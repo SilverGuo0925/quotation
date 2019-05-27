@@ -1,0 +1,39 @@
+
+  .app-content {
+    padding:5px;
+   }
+   
+   .app-content mat-card {
+     margin: 5px;
+   }
+   .example-h2 {
+     margin: 10px 0;
+     color: rgba(0,0,0,.54);
+   }
+   .example-form {
+     min-width: 150px;
+     max-width: 500px; 
+   }
+ 
+  .example-form > * {
+    width: 100%;
+  }
+   .example-radio-group {
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+
+  .app-button{
+  margin-top:15px;
+}
+ .example-table{
+ min-width: 150px;
+     max-width: 500px; 
+     width: 100%;
+  }
+  
