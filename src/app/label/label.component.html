@@ -1,3 +1,11 @@
-<p>
-  label works!
-</p>
+<h3>Get configuration from JSON file</h3>
+<div>
+  <button mat-button (click)="clear(); showConfig()">get</button>
+  <span *ngIf="config">
+    <p>body is "{{config.userId}}"</p>
+    <p>body is "{{config.id}}"</p>
+    <p>body is "{{config.title}}"</p>
+    <p>body is "{{config.body}}"</p>
+  </span>
+</div>
+<p *ngIf="error" class="error">{{error | json}}</p>

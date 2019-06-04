@@ -1,6 +1,21 @@
 <mat-toolbar color="primary" class="mat-elevation-z1">
-    <button mat-icon-button id="menu">
+    <button mat-icon-button id="menu" (click)="sysMgrService.toggleNav()">
       <mat-icon>menu</mat-icon>
     </button>
     <span>Quotation System</span>
+    
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+    <button mat-icon-button id="login" routerLink="/login" >
+      <mat-icon>person</mat-icon>
+    </button>
   </mat-toolbar>
+    <!--<mat-toolbar class="top-nav" color="primary">
+
+    <button mat-button class="app-menu-button" (click)="sidenav.toggle()">
+      <i class="material-icons">menu</i>
+    </button>
+    <span class="title">Angular Material Demo</span>
+
+  </mat-toolbar> -->

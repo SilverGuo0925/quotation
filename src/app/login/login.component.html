@@ -1,0 +1,29 @@
+<div class="app-content">
+    <!-- Material Chip List -->
+<mat-card>
+  <mat-card-content>
+    <h2 class="example-h2">Login</h2>
+    <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field>
+            <mat-label>User Group</mat-label>
+            <mat-select formControlName="userGrp">
+              <mat-option *ngFor="let userGrp of userGrps" [value]="userGrp.value">
+                {{userGrp.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      <mat-form-field >
+        <input matInput placeholder="Username (email)" formControlName="username">
+        <mat-error *ngIf="loginForm.get('username').invalid">Invaild email</mat-error>
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput placeholder="Password" formControlName="password">
+        <mat-error *ngIf="loginForm.get('password').invalid">Invaid passoword</mat-error>
+      </mat-form-field>
+    
+     <button class="app-button" mat-raised-button color="primary" type="submit">LOGIN</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+</div>

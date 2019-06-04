@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { isQuote, ParsedProperty, createUrlResolverWithoutPackagePrefix } from '@angular/compiler';
-
+import { SysMgrService } from '../services/sys-mgr.service';
 
 export interface Material {
 
@@ -45,7 +44,7 @@ export class StickerComponent implements OnInit {
   quantity: number = 1000;
 
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private sysMgr: SysMgrService) {
     this.options = fb.group({
       height: ['', [Validators.required, Validators.min(5)]],
       width: ['', [Validators.required, Validators.min(5)]],
@@ -62,6 +61,10 @@ export class StickerComponent implements OnInit {
   onSubmit() {
 
     // air shipping
+    if (this.options.invalid) {
+      this.isDivVisible = false;
+      return;
+    }
 
     this.quantity = 1000;
     //this.ELEMENT_DATA = [];
@@ -71,9 +74,9 @@ export class StickerComponent implements OnInit {
 
       let areaPerPcsInSM: number = this.options.value.width * this.options.value.height / 10000;
       let weight: number = 3 * areaPerPcsInSM * this.quantity * 100 / 1000;
-      
-      let addtionalAirFee:number=(this.options.value.shipping=='airShipping'? weight*this.airIndex:0);
-      let totalPriceSGD: number = weight * this.costIndex + weight * this.airIndex + this.serviceFee+addtionalAirFee;
+
+      let addtionalAirFee: number = (this.options.value.shipping == 'airShipping' ? weight * this.airIndex : 0);
+      let totalPriceSGD: number = weight * this.costIndex + weight * this.airIndex + this.serviceFee + addtionalAirFee;
       let unitPriceSGD: number = totalPriceSGD / this.quantity;
 
       if (this.options.value.material == 'pvc' || this.options.value.material == 'transPvc') {
@@ -98,8 +101,10 @@ export class StickerComponent implements OnInit {
       this.isDivVisible = true;
     }
 
+
   }
 
   ngOnInit() {
+
   }
 }

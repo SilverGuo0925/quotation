@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Config,SysMgrService} from '../services/sys-mgr.service';
 
 @Component({
   selector: 'app-label',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LabelComponent implements OnInit {
 
-  constructor() { }
+  error: any;
+  headers: string[];
+  config: Config;
+
+  constructor(private sysMgr:SysMgrService) { }
 
   ngOnInit() {
+   
+  }
+
+  showConfig() {
+    this.sysMgr.getConfig()
+      .subscribe(
+        (data: Config) => this.config = { ...data }, // success path
+        error => this.error = error // error path
+      );
+  }
+  clear() {
+    this.config = undefined;
+    this.error = undefined;
   }
 
 }

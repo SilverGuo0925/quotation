@@ -1,6 +1,7 @@
-import { Component, Optional } from '@angular/core';
+import { Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit,Optional } from '@angular/core';
 import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { SysMgrService } from './services/sys-mgr.service';
 
 
 @Component({
@@ -17,12 +18,18 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     ])
   ]
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
   isDarkTheme = false;
   lastDialogResult: string;
   mode: string;
   value: number;
   expanded=false;
-  
+  @ViewChild('sidenav') sidenav:ElementRef;
+
+  constructor(private sysMgrService: SysMgrService){}
+
+  ngAfterViewInit(){
+    this.sysMgrService.sidenav=this.sidenav;
+  }
 }
 

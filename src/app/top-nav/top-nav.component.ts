@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {SysMgrService} from '../services/sys-mgr.service';
 @Component({
   selector: 'app-top-nav',
   templateUrl: './top-nav.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sysMgrService: SysMgrService) { }
 
   ngOnInit() {
   }
