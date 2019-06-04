@@ -19,7 +19,7 @@
       </mat-form-field>
       <mat-form-field >
         <input matInput placeholder="Password" formControlName="password">
-        <mat-error *ngIf="loginForm.get('password').invalid">Invaid passoword</mat-error>
+        <mat-error *ngIf="loginForm.get('password').invalid">Minimum length 8</mat-error>
       </mat-form-field>
     
      <button class="app-button" mat-raised-button color="primary" type="submit">LOGIN</button>
