@@ -26,4 +26,10 @@
     </form>
   </mat-card-content>
 </mat-card>
+<span *ngIf="user">
+    <p>body is "{{user.username}}"</p>
+    <p>body is "{{user.password}}"</p>
+    <p>body is "{{user.token}}"</p>
+  </span>
+<p *ngIf="error" class="error">{{error | json}}</p>
 </div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService, AuthenticationService } from '../services';
 import { Router } from '@angular/router';
 import {first} from 'rxjs/operators';
+import {User} from '../models/user';
 export interface UserGroup {
 
   value: string;
@@ -17,6 +18,8 @@ export interface UserGroup {
 })
 export class LoginComponent implements OnInit {
 
+  error: any;
+  user:User;
   loginForm: FormGroup;
   loading = false;
   submitted = false;
@@ -46,6 +49,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+
+    this.user=undefined;
+    this.error=undefined;
+
     this.submitted = true;
 
     // stop here if form is invalid
@@ -57,13 +64,17 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.loginForm.value.username,this.loginForm.value.password)
     .pipe(first())
     .subscribe(
-        data => {
+        (data:User) => {
+            this.user=data;
             this.router.navigate(['/']);
         },
         error => {
           //  this.alertService.error(error);
             this.loading = false;
+            this.error = error // error path
         });
+
   }
+
 
 }
