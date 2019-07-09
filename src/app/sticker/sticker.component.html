@@ -1,6 +1,6 @@
-<div class="app-content">
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" class="app-content">
   <!-- Material Chip List -->
-  <mat-card>
+  <mat-card fxFlex="auto">
     <mat-card-content>
       <h2 class="example-h2">Dimension</h2>
       <form class="example-form" [formGroup]="options" (ngSubmit)="onSubmit()">
@@ -31,7 +31,7 @@
   </mat-card>
   <!-- /Material Chip List -->
 
-  <mat-card [style.visibility]="isDivVisible ? 'visible' : 'hidden'">
+  <mat-card  fxFlex="auto" [style.visibility]="isDivVisible ? 'visible' : 'hidden'">
     <mat-card-content>
       <h2 class="example-h2">Quotation</h2>
       <table mat-table [dataSource]="dataSource" class="example-table">

@@ -1,10 +1,12 @@
 
   .app-content {
-    padding:5px;
+    padding:10px;
    }
    
    .app-content mat-card {
-     margin: 5px;
+     //margin: 5px;
+     width:30%;
+     min-width: 450px;
    }
    .example-h2 {
      margin: 10px 0;
