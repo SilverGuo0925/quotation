@@ -1,17 +1,22 @@
-<mat-toolbar color="primary" class="mat-elevation-z1">
-    <button mat-icon-button id="menu" (click)="sysMgrService.toggleNav()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Quotation System</span>
-    
-  <!-- This fills the remaining space of the current row -->
-  <span class="example-fill-remaining-space"></span>
+<mat-toolbar fxLayout="row" color="primary" class="mat-elevation-z1">
 
-    <button mat-icon-button id="login" routerLink="/login" >
-      <mat-icon>person</mat-icon>
-    </button>
-  </mat-toolbar>
-    <!--<mat-toolbar class="top-nav" color="primary">
+  <!-- This fills the remaining space of the current row -->
+  <!-- <span class="example-fill-remaining-space"></span> -->
+
+  <button mat-icon-button id="menu" (click)="sysMgrService.toggleNav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span fxFlex="auto">Quotation System</span>
+
+  <button mat-icon-button id="login" routerLink="/login">
+    <mat-icon>person</mat-icon>
+  </button>
+
+
+</mat-toolbar>
+
+<!--<mat-toolbar class="top-nav" color="primary">
 
     <button mat-button class="app-menu-button" (click)="sidenav.toggle()">
       <i class="material-icons">menu</i>
