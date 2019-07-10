@@ -1,5 +1,8 @@
- <app-top-nav fxHide.gt-xs></app-top-nav>
  <mat-sidenav-container>
+   
+  <!-- Top Navagation -->
+  <app-top-nav></app-top-nav>
+
   <!-- Side Navagation -->
   <mat-sidenav #sidenav mode="over"color="primary">
 
@@ -21,7 +24,6 @@
 
   </mat-sidenav>
   
-  <app-top-nav fxHide.xs></app-top-nav>
   <!-- Side Navagation Content-->
   <router-outlet></router-outlet>
 

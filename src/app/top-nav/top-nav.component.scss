@@ -3,3 +3,10 @@
 //        Every toolbar row uses a flexbox row layout. */
 //     flex: 1 1 auto;
 //   }
+.top-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 998;
+  }
