@@ -19,6 +19,7 @@ import { SysMgrService } from './services/sys-mgr.service';
   ]
 })
 export class AppComponent implements AfterViewInit{
+  isDivVisible =false;
   isDarkTheme = false;
   lastDialogResult: string;
   mode: string;
@@ -31,5 +32,7 @@ export class AppComponent implements AfterViewInit{
   ngAfterViewInit(){
     this.sysMgrService.sidenav=this.sidenav;
   }
+
+  
 }
 

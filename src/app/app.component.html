@@ -1,9 +1,7 @@
- <mat-sidenav-container>
+ <!-- <mat-sidenav-container>
    
-  <!-- Top Navagation -->
   <app-top-nav></app-top-nav>
 
-  <!-- Side Navagation -->
   <mat-sidenav #sidenav mode="over"color="primary">
 
     <mat-nav-list>
@@ -24,9 +22,26 @@
 
   </mat-sidenav>
   
-  <!-- Side Navagation Content-->
   <router-outlet></router-outlet>
 
-  <!-- <div fxFlex></div> 
- <span class="version-info">Supported by Wizvision</span> -->
-</mat-sidenav-container>
+</mat-sidenav-container> -->
+
+<clr-main-container>
+ 
+  <clr-header>
+    <div class="branding">
+        <a href="" class="nav-link">
+            <clr-icon shape="vmw-app"></clr-icon>
+            <span class="title">Support Center</span>
+        </a>
+    </div>
+    <div class="header-nav" [clr-nav-level]="1">
+        <a routerLink="/quotation" class="active nav-link"><span class="nav-text">Instant Quotation</span></a>
+        <a href="./login" class="nav-link"><span class="nav-text">Logistics</span></a>
+    </div>
+    
+  </clr-header>
+
+  <router-outlet></router-outlet>
+
+</clr-main-container>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Config,SysMgrService} from '../services/sys-mgr.service';
+import {Config,SysMgrService} from '../../services/sys-mgr.service';
 
 @Component({
   selector: 'app-label',

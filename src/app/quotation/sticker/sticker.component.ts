@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SysMgrService } from '../services/sys-mgr.service';
+import { SysMgrService } from '../../services/sys-mgr.service';
 
 export interface Material {
 

@@ -1,0 +1,69 @@
+<!-- <router-outlet></router-outlet> -->
+
+ <div class="content-container"> 
+    <main class="content-area">
+      <router-outlet></router-outlet>
+    </main>
+ 
+      <clr-vertical-nav [clr-nav-level]="2" *ngIf="true" >
+        <clr-vertical-nav-group
+                routerLinkActive="active">
+            <a routerLink="./package" hidden aria-hidden="true">
+            </a>
+            <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
+            Package
+            <clr-vertical-nav-group-children *clrIfExpanded="true">
+                <a clrVerticalNavLink
+                   routerLink="./sticker"
+                   routerLinkActive="active">
+                    Sticker
+                </a>
+                <a clrVerticalNavLink
+                   routerLink="./label"
+                   routerLinkActive="active">
+                    Label
+                </a>
+            </clr-vertical-nav-group-children>
+        </clr-vertical-nav-group>
+        <clr-vertical-nav-group
+                routerLinkActive="active">
+            <a routerLink="./fire" hidden aria-hidden="true">
+            </a>
+            <clr-icon shape="flame" clrVerticalNavIcon></clr-icon>
+            Fire
+            <clr-vertical-nav-group-children *clrIfExpanded>
+                <a clrVerticalNavLink
+                   routerLink="./fire/charmander"
+                   routerLinkActive="active">
+                    Charmander
+                </a>
+                <a clrVerticalNavLink
+                   routerLink="./fire/charizard"
+                   routerLinkActive="active">
+                    Charizard
+                </a>
+            </clr-vertical-nav-group-children>
+        </clr-vertical-nav-group>
+        <clr-vertical-nav-group
+                routerLinkActive="active">
+            <a routerLink="./electric" hidden aria-hidden="true">
+            </a>
+            <clr-icon shape="bolt" clrVerticalNavIcon></clr-icon>
+            Electric
+            <clr-vertical-nav-group-children *clrIfExpanded>
+                <a clrVerticalNavLink
+                   routerLink="./electric/pikachu"
+                   routerLinkActive="active">
+                    Pikachu
+                </a>
+                <a clrVerticalNavLink
+                   routerLink="./electric/raichu"
+                   routerLinkActive="active">
+                    Raichu
+                </a>
+            </clr-vertical-nav-group-children>
+        </clr-vertical-nav-group>
+        </clr-vertical-nav>
+
+
+</div> 
