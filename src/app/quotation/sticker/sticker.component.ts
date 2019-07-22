@@ -46,8 +46,8 @@ export class StickerComponent implements OnInit {
 
   constructor(fb: FormBuilder, private sysMgr: SysMgrService) {
     this.options = fb.group({
-      height: ['', [Validators.required, Validators.min(5)]],
-      width: ['', [Validators.required, Validators.min(5)]],
+      height: ['', [Validators.required, Validators.min(1)]],
+      width: ['', [Validators.required, Validators.min(1)]],
       material: ['artPaper'],
       shipping: ['airShipping']
     });

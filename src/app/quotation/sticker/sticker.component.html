@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign.sm="center center" fxLayoutAlign.gt-sm="start start" class="app-content">
+<div fxLayout="column" fxLayoutAlign.sm="center center" fxLayoutAlign.gt-sm="start start" fxLayoutGap="20px">
   <!-- Material Chip List -->
   <mat-card fxFlex="auto">
     <mat-card-content>
@@ -6,11 +6,11 @@
       <form class="example-form" [formGroup]="options" (ngSubmit)="onSubmit()">
         <mat-form-field >
           <input matInput type="number" placeholder="Height (cm)" formControlName="height">
-          <mat-error *ngIf="options.get('height').invalid">Min number: 5</mat-error>
+          <mat-error *ngIf="options.get('height').invalid">Min number: 1</mat-error>
         </mat-form-field>
         <mat-form-field >
           <input matInput type="number" placeholder="Width (cm)" formControlName="width">
-          <mat-error *ngIf="options.get('width').invalid">Min number: 5</mat-error>
+          <mat-error *ngIf="options.get('width').invalid">Min number: 1</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Material</mat-label>

@@ -1,6 +1,7 @@
-<div class="app-content">
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px" >
+
     <!-- Material Chip List -->
-<mat-card>
+<mat-card fxFlex="auto">
   <mat-card-content>
     <h2 class="example-h2">Login</h2>
     <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -26,7 +27,7 @@
     </form>
   </mat-card-content>
 </mat-card>
-<span *ngIf="user">
+<span *ngIf="user" fxFlex="auto">
     <p>body is "{{user.username}}"</p>
     <p>body is "{{user.password}}"</p>
     <p>body is "{{user.token}}"</p>
