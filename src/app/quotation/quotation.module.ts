@@ -5,6 +5,7 @@ import { QuotationRoutingModule } from './quotation-routing.module';
 import { ClarityModule } from '@clr/angular';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from '../app.material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 import { StickerComponent } from './sticker/sticker.component';
@@ -18,7 +19,8 @@ import { LabelComponent } from './label/label.component';
     ClarityModule,
     FormsModule,
     ReactiveFormsModule,
-    AppMaterialModule
+    AppMaterialModule,
+    FlexLayoutModule
   ]
 })
 export class QuotationModule { }
