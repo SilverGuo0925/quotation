@@ -20,7 +20,8 @@ export class Quote {
 @Component({
   selector: 'app-sticker',
   templateUrl: './sticker.component.html',
-  styleUrls: ['./sticker.component.scss']
+  styleUrls: ['./sticker.component.scss'],
+  host: {'class': 'content-area'}
 })
 export class StickerComponent implements OnInit {
 

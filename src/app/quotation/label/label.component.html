@@ -1,3 +1,19 @@
+<div class="dox-wrapper">
+  <div class="dox-header">
+    <section>
+      <h1>Label</h1>
+      <div class="dox-tabs">
+        <ul class="list-unstyled">
+          <li><a class="clrweb-tablink active" fragment="top" id="topTabLink" routerlink="." routerlinkactive="active"
+              href="/documentation/app-layout#top"> Examples &amp; Code </a></li>
+          <li><a class="clrweb-tablink" fragment="guidelines" id="guidelinesTabLink" routerlink="."
+              routerlinkactive="active" href="/documentation/app-layout#guidelines"> Design Guidelines </a></li>
+
+        </ul>
+      </div>
+    </section>
+  </div>
+  <section class="dox-content">
 <h3>Get configuration from JSON file</h3>
 <div>
   <button mat-button (click)="clear(); showConfig()">get</button>
@@ -9,3 +25,5 @@
   </span>
 </div>
 <p *ngIf="error" class="error">{{error | json}}</p>
+  </section>
+</div>

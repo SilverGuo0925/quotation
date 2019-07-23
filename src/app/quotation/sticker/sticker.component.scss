@@ -1,13 +1,14 @@
 
-  // .app-content {
-
-  //   height:100%;
-  //  }
+  .dox-content-panel {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+   }
 
    .mat-card {
      //margin: 5px;
      max-width:550px;
-     min-width: 450px;
+     min-width: 100px;
      width: 100%;
    }
    .example-h2 {
@@ -15,7 +16,7 @@
      color: rgba(0,0,0,.54);
    }
    .example-form {
-     min-width: 150px;
+     min-width: 100px;
      max-width: 500px; 
    }
  
@@ -36,7 +37,7 @@
   margin-top:15px;
 }
  .example-table{
- min-width: 150px;
+ min-width: 100px;
      max-width: 500px; 
      width: 100%;
   }

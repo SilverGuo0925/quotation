@@ -4,7 +4,8 @@ import {Config,SysMgrService} from '../../services/sys-mgr.service';
 @Component({
   selector: 'app-label',
   templateUrl: './label.component.html',
-  styleUrls: ['./label.component.scss']
+  styleUrls: ['./label.component.scss'],
+  host: {'class': 'content-area'}
 })
 export class LabelComponent implements OnInit {
 
