@@ -3,38 +3,22 @@
     flex-direction: column;
     width: 100%;
 }
-.dox-header {
-    padding-top: 18px;
-    flex: 0 0 108px;
+.dox-wrapper .dox-header {
+    padding-top: 0px;
+    flex: 0 0 60px;
     padding-left: 36px;
     position: relative;
-    border-bottom: 1px solid #ccc;
+   // border-bottom: 1px solid #ccc;
 }
 .dox-content {
     flex: 1 1 auto;
-    overflow-y: scroll;
-    width: 100%;
-    max-width: 100%;
-    border-top: 1px solid transparent;
+    max-width:900px;
+    border-top: 1px solid #ccc;
     height: 100%;
 }
-.dox-content-wrapper {
+.dox-content .dox-content-wrapper {
     padding-left: 36px;
     padding-top: 6px;
     padding-bottom: 96px;
-    max-width: 900px;
-    width: 100%;
 }
-
-.dox-tabs {
-    padding-top: 12px;
-}
-.list-unstyled {
-    padding-left: 0;
-    margin-left: 0;
-    list-style: none;
-}
-.dox-tabs ul {
-    margin-top: 0;
-    margin-bottom: 6px;
-}
+h1{margin-top: 0;}

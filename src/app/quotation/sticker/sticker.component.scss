@@ -1,4 +1,35 @@
 
+  
+.dox-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.dox-wrapper .dox-header {
+    padding-top: 0px;
+    flex: 0 0 60px;
+    padding-left: 0;
+    position: relative;
+    //border-bottom: 1px solid #ccc;
+}
+.dox-content {
+    flex: 1 1 auto;
+    max-width:900px;
+    border-top: 1px solid #ccc;
+    height: 100%;
+}
+.dox-content .dox-content-wrapper {
+    padding-left: 0;
+    padding-top: 6px;
+    padding-bottom: 96px;
+}
+h1{margin-top: 0;}
+  
+  
+  
+  
+  
+  
   .dox-content-panel {
     padding: 0;
     overflow: hidden;
