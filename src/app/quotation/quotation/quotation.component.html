@@ -4,46 +4,70 @@
     </main> -->
 
 <clr-vertical-nav [clr-nav-level]="2" *ngIf="true">
+    <a clrVerticalNavLink routerLink="./sticker" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="tags"></clr-icon>
+        Sticker
+    </a>
     <clr-vertical-nav-group routerLinkActive="active">
-        <a routerLink="./package" hidden aria-hidden="true">
+        <a routerLink="./Bag" hidden aria-hidden="true">
         </a>
-        <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
-        Package
-        <clr-vertical-nav-group-children *clrIfExpanded="true">
-            <a clrVerticalNavLink routerLink="./sticker" routerLinkActive="active">
-                Sticker
-            </a>
-            <a clrVerticalNavLink routerLink="./label" routerLinkActive="active">
-                Label
-            </a>
-        </clr-vertical-nav-group-children>
-    </clr-vertical-nav-group>
-    <clr-vertical-nav-group routerLinkActive="active">
-        <a routerLink="./fire" hidden aria-hidden="true">
-        </a>
-        <clr-icon shape="flame" clrVerticalNavIcon></clr-icon>
-        Fire
+        <clr-icon shape="tags" clrVerticalNavIcon></clr-icon>
+        Bag
         <clr-vertical-nav-group-children *clrIfExpanded>
-            <a clrVerticalNavLink routerLink="./fire/charmander" routerLinkActive="active">
-                Charmander
+            <a clrVerticalNavLink routerLink="./paperbag" routerLinkActive="active">
+                Paper Bag
             </a>
-            <a clrVerticalNavLink routerLink="./fire/charizard" routerLinkActive="active">
-                Charizard
+            <a clrVerticalNavLink routerLink="./plasticbag" routerLinkActive="active">
+                Plastic Bag
             </a>
         </clr-vertical-nav-group-children>
     </clr-vertical-nav-group>
     <clr-vertical-nav-group routerLinkActive="active">
-        <a routerLink="./electric" hidden aria-hidden="true">
+        <a routerLink="./cup" hidden aria-hidden="true">
         </a>
-        <clr-icon shape="bolt" clrVerticalNavIcon></clr-icon>
-        Electric
+        <clr-icon shape="tags" clrVerticalNavIcon></clr-icon>
+        Cup
         <clr-vertical-nav-group-children *clrIfExpanded>
-            <a clrVerticalNavLink routerLink="./electric/pikachu" routerLinkActive="active">
-                Pikachu
+            <a clrVerticalNavLink routerLink="./papercup" routerLinkActive="active">
+                Paper Cup
             </a>
-            <a clrVerticalNavLink routerLink="./electric/raichu" routerLinkActive="active">
-                Raichu
+            <a clrVerticalNavLink routerLink="./plasticcup" routerLinkActive="active">
+                Plastic Cup
             </a>
         </clr-vertical-nav-group-children>
     </clr-vertical-nav-group>
+    <clr-vertical-nav-group routerLinkActive="active">
+        <a routerLink="./placup" hidden aria-hidden="true">
+        </a>
+        <clr-icon shape="tags" clrVerticalNavIcon></clr-icon>
+        PLA Cup
+        <clr-vertical-nav-group-children *clrIfExpanded>
+            <a clrVerticalNavLink routerLink="./plapapercup" routerLinkActive="active">
+                Paper Cup
+            </a>
+            <a clrVerticalNavLink routerLink="./plaplasticcup" routerLinkActive="active">
+                Plastic Cup
+            </a>
+        </clr-vertical-nav-group-children>
+    </clr-vertical-nav-group>
+    <a clrVerticalNavLink routerLink="./notebook" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="tags"></clr-icon>
+        notebook
+    </a>
 </clr-vertical-nav>
+
+
+<!-- <clr-vertical-nav-group routerLinkActive="active">
+    <a routerLink="./package" hidden aria-hidden="true">
+    </a>
+    <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
+    Package
+    <clr-vertical-nav-group-children *clrIfExpanded="true">
+        <a clrVerticalNavLink routerLink="./sticker" routerLinkActive="active">
+            Sticker
+        </a>
+        <a clrVerticalNavLink routerLink="./label" routerLinkActive="active">
+            Label
+        </a>
+    </clr-vertical-nav-group-children>
+</clr-vertical-nav-group> -->

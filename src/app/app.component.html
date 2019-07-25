@@ -46,14 +46,32 @@
     <div class="branding">
         <a routerLink="" class="nav-link">
             <clr-icon shape="vmw-app"></clr-icon>
-            <span class="title">Support Center</span>
+            <span class="title">Qingprint Center</span>
         </a>
     </div>
     <div class="header-nav" [clr-nav-level]="1">
-        <a routerLink="/quotation" class="nav-link"><span class="nav-text">Quotation</span></a>
-        <a routerLink="/login" class="nav-link"><span class="nav-text">Logistics</span></a>
+        <a routerLink="/quotation" class="nav-link"><span class="nav-text">Instant Quote</span></a>
+        <a routerLink="/track" class="nav-link"><span class="nav-text">Track</span></a>
+        <a routerLink="/documentation" class="nav-link"><span class="nav-text">Documentation</span></a>
     </div>
-    
+    <form class="search">
+      <label for="search_input">
+          <input id="search_input" type="text" placeholder="Search for keywords...">
+      </label>
+  </form>
+    <div class="header-actions">
+      <clr-dropdown>
+          <button class="nav-icon" clrDropdownTrigger>
+              <clr-icon shape="user"></clr-icon>
+              <clr-icon shape="caret down"></clr-icon>
+          </button>
+          <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+              <a routerLink="/login" clrDropdownItem>About</a>
+              <a href="..." clrDropdownItem>Preferences</a>
+              <a href="..." clrDropdownItem>Log out</a>
+          </clr-dropdown-menu>
+      </clr-dropdown>
+  </div>
   </clr-header>
 
   <router-outlet ></router-outlet>

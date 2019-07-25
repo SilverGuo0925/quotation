@@ -15,6 +15,9 @@ import { LoginComponent } from './login/login.component';
 import { ClarityModule } from '@clr/angular';
 import {QuotationModule} from './quotation/quotation.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DocumentationComponent } from './documentation/documentation.component';
+import { TrackComponent } from './track/track.component';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -28,7 +31,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ClarityModule,
     QuotationModule 
   ],
-  declarations: [AppComponent, TopNavComponent, LoginComponent, PageNotFoundComponent],
+  declarations: [AppComponent, TopNavComponent, LoginComponent, PageNotFoundComponent, DocumentationComponent, TrackComponent, HomeComponent],
   //entryComponents: [DialogContentComponent],
   bootstrap: [AppComponent],
 })
