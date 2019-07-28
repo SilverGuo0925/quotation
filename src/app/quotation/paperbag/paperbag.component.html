@@ -1,0 +1,100 @@
+
+
+<div class="clr-row">
+  <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+      <div class="card">
+          <div class="card-header">
+              Paper Bag
+          </div>
+          <div class="card-block">
+              <div class="card-title">
+                Dimension
+              </div>
+              <div class="card-text">
+                <form class="example-form" [formGroup]="options" (ngSubmit)="onSubmit()">
+                  <mat-form-field >
+                    <input matInput type="number" placeholder="Height (cm)" formControlName="height">
+                    <mat-error *ngIf="options.get('height').invalid">Min number: 1</mat-error>
+                  </mat-form-field>
+                  <mat-form-field >
+                    <input matInput type="number" placeholder="Width (cm)" formControlName="width">
+                    <mat-error *ngIf="options.get('width').invalid">Min number: 1</mat-error>
+                  </mat-form-field>
+                  <mat-form-field >
+                    <input matInput type="number" placeholder="Side Width (cm)" formControlName="sideWidth">
+                    <mat-error *ngIf="options.get('width').invalid">Min number: 1</mat-error>
+                  </mat-form-field>
+                  <mat-form-field >
+                    <input matInput type="number" placeholder="Thickness for Two Layers (C,1C=0.01mm)" formControlName="thickness">
+                    <mat-error *ngIf="options.get('width').invalid">Min number: 1</mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Type of Bag</mat-label>
+                    <mat-select formControlName="bagType">
+                      <mat-option *ngFor="let bagType of bagTypes" [value]="bagType.value">
+                        {{bagType.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                       
+                </form>
+              </div>
+          </div>
+          <div class="card-footer">
+              <button class="btn btn-sm btn-link" (click)="onSubmit()">Search</button>
+              <button class="btn btn-sm btn-link">Reset</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="clr-row" [style.visibility]="isDivVisible ? 'visible' : 'hidden'">
+  <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+      <div class="card">
+          <div class="card-header">
+             Quotation
+          </div>
+          <div class="card-block">
+              
+              <div class="card-text">
+                <table mat-table [dataSource]="dataSource" class="example-table">
+      
+                  <!--- Note that these columns can be defined in any order.
+                              The actual rendered columns are set as a property on the row definition" -->
+          
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="quantity">
+                    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                  </ng-container>
+          
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="unitPrice">
+                    <th mat-header-cell *matHeaderCellDef> Unit Price </th>
+                    <td mat-cell *matCellDef="let element"> {{element.unitPrice}} </td>
+                  </ng-container>
+          
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="totalPrice">
+                    <th mat-header-cell *matHeaderCellDef> Total Price </th>
+                    <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
+                  </ng-container>
+          
+                  <!-- Symbol Column -->
+                  <ng-container matColumnDef="weight">
+                    <th mat-header-cell *matHeaderCellDef> Weight </th>
+                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                  </ng-container>
+          
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>
+          </div>
+          <div class="card-footer">
+              <button class="btn btn-sm btn-link" (click)="onSubmit()">Search</button>
+              <button class="btn btn-sm btn-link">Reset</button>
+          </div>
+      </div>
+  </div>
+</div>

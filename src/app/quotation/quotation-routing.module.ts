@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {QuotationComponent} from './quotation/quotation.component';
 import { StickerComponent } from './sticker/sticker.component';
 import { LabelComponent } from './label/label.component';
-
+import {PlasticbagComponent} from './plasticbag/plasticbag.component';
+import {PaperbagComponent} from './paperbag/paperbag.component';
 const quotationRoutes: Routes = [
   {
     path: '',
@@ -11,8 +12,16 @@ const quotationRoutes: Routes = [
     children: [
       {
         path: 'sticker',
-        component: StickerComponent,
+        component: StickerComponent
        
+      },
+      {
+        path: 'plasticbag',
+        component: PlasticbagComponent
+      },
+      {
+        path: 'paperbag',
+        component: PaperbagComponent
       },
       {
         path: 'label',

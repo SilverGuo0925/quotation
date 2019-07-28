@@ -10,9 +10,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { StickerComponent } from './sticker/sticker.component';
 import { LabelComponent } from './label/label.component';
+import { PlasticbagComponent } from './plasticbag/plasticbag.component';
+import { PaperbagComponent } from './paperbag/paperbag.component';
 
 @NgModule({
-  declarations: [QuotationComponent,StickerComponent,LabelComponent],
+  declarations: [QuotationComponent,StickerComponent,LabelComponent, PlasticbagComponent, PaperbagComponent],
   imports: [
     CommonModule,
     QuotationRoutingModule,
