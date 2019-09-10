@@ -4,21 +4,17 @@
     </main> -->
 
 <clr-vertical-nav [clr-nav-level]="2" *ngIf="true">
-    <a clrVerticalNavLink routerLink="./sticker" routerLinkActive="active">
-        <clr-icon clrVerticalNavIcon shape="tags"></clr-icon>
-        Sticker
-    </a>
     <clr-vertical-nav-group routerLinkActive="active">
         <a routerLink="./Bag" hidden aria-hidden="true">
         </a>
         <clr-icon shape="tags" clrVerticalNavIcon></clr-icon>
         Bag
         <clr-vertical-nav-group-children *clrIfExpanded>
-            <a clrVerticalNavLink routerLink="./paperbag" routerLinkActive="active">
-                Paper Bag
-            </a>
             <a clrVerticalNavLink routerLink="./plasticbag" routerLinkActive="active">
                 Plastic Bag
+            </a>
+            <a clrVerticalNavLink routerLink="./paperbag" routerLinkActive="active">
+                Paper Bag
             </a>
         </clr-vertical-nav-group-children>
     </clr-vertical-nav-group>
@@ -52,7 +48,11 @@
     </clr-vertical-nav-group>
     <a clrVerticalNavLink routerLink="./notebook" routerLinkActive="active">
         <clr-icon clrVerticalNavIcon shape="tags"></clr-icon>
-        notebook
+        Notebook
+    </a>
+    <a clrVerticalNavLink routerLink="./sticker" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="tags"></clr-icon>
+        Sticker
     </a>
 </clr-vertical-nav>
 

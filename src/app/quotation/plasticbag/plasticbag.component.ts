@@ -32,9 +32,9 @@ export class PlasticbagComponent implements OnInit {
   dataSource;
   options: FormGroup;
   bagTypes: Material[] = [
-    { value: 'singlet', viewValue: 'Singlet Plastic Bag' },
+    { value: 'singlet', viewValue: 'Singlet Bag' },
     { value: 'diecut', viewValue: 'Die Cut Bag' },
-    { value: 'softloop', viewValue: 'Soft Loop Bag' }
+    { value: 'softloop', viewValue: 'Tote Bag' }
   ]
   areaPerPcsInSM: number;
   totalPriceSGD: number;
