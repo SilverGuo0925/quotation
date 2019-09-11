@@ -35,15 +35,17 @@ export class PlasticbagComponent implements OnInit {
     { value: 'singlet', viewValue: 'Singlet Bag' },
     { value: 'diecut', viewValue: 'Die Cut Bag' },
     { value: 'softloop', viewValue: 'Tote Bag' }
-  ]
+  ];
   areaPerPcsInSM: number;
   totalPriceSGD: number;
   unitPriceSGD: number;
 
-  costIndex: number = 6.4;//SGD6.4/KG for sticker 
+  costIndex: number = 6.4;//SGD6/KG for sticker 
   airIndex: number = 6;//SGD6.0/KG for air shipping fee
-  serviceFee: number = 50; //SGD50 for service fee;
+  serviceFee: number = 100; //SGD50 for service fee;
   quantity: number = 5000;
+
+  specs: string;
 
 
   constructor(fb: FormBuilder, private sysMgr: SysMgrService) {
@@ -51,7 +53,7 @@ export class PlasticbagComponent implements OnInit {
       height: ['', [Validators.required, Validators.min(1)]],
       width: ['', [Validators.required, Validators.min(1)]],
       sideWidth: [''],
-      thickness: [''],
+      thickness: ['', [Validators.required, Validators.min(3)]],
       bagType: ['singlet']
     });
   }
@@ -63,12 +65,27 @@ export class PlasticbagComponent implements OnInit {
 
   onSubmit() {
 
+
     // air shipping
     if (this.options.invalid) {
       this.isDivVisible = false;
       return;
     }
 
+    //specs
+
+    if (this.options.value.bagType=='singlet')
+    this.specs = "Bag Specs: " + "Singlet Bag" + ",";
+    else if (this.options.value.bagType=='diecut')
+    this.specs = "Bag Specs: " + "Die Cut Bag" + ",";
+    else  this.specs = "Bag Specs: " + "Tote Bag" + ",";
+
+    if (!this.options.value.sideWidth)
+      this.specs = this.specs + this.options.value.width + " x " + this.options.value.height + " cm,";
+    else
+      this.specs = this.specs + this.options.value.width + " + " + this.options.value.sideWidth + " + " + this.options.value.sideWidth + " x " + this.options.value.height + " cm,";
+
+    this.specs = this.specs + this.options.value.thickness + " C.";
     this.quantity = 5000;
     //this.ELEMENT_DATA = [];
     this.QUOTE_DATA = [];
@@ -78,7 +95,7 @@ export class PlasticbagComponent implements OnInit {
       if (!this.options.value.sideWidth)
         this.areaPerPcsInSM = this.options.value.width * this.options.value.height / 10000;
       else
-        this.areaPerPcsInSM = this.options.value.height * (this.options.value.width + this.options.value.sideWidth) / 10000;
+        this.areaPerPcsInSM = this.options.value.height * (this.options.value.width + this.options.value.sideWidth * 2) / 10000;
 
       let volumePerPcsInCM: number = this.areaPerPcsInSM * this.options.value.thickness / 100000
       let weight: number = (volumePerPcsInCM * this.quantity) * 1000;
@@ -92,7 +109,7 @@ export class PlasticbagComponent implements OnInit {
         this.totalPriceSGD = weight * this.costIndex + this.serviceFee
         this.unitPriceSGD = this.totalPriceSGD / this.quantity;
       }
-      let quote = new Quote(this.quantity, parseFloat(this.unitPriceSGD.toFixed(3)), parseFloat(this.totalPriceSGD.toFixed(2)), parseFloat(weight.toFixed(2)));
+      let quote = new Quote(this.quantity, parseFloat(this.unitPriceSGD.toFixed(3)), parseFloat(this.totalPriceSGD.toFixed(0)), parseFloat(weight.toFixed(0)));
       this.QUOTE_DATA.push(quote);
 
 
@@ -114,7 +131,9 @@ export class PlasticbagComponent implements OnInit {
 
 
   }
-
+  onReset() {
+    this.options.reset();
+  }
   ngOnInit() {
 
   }

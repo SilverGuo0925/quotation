@@ -27,7 +27,7 @@ const quotationRoutes: Routes = [
         path: 'label',
         component: LabelComponent
       },
-       { path: '', redirectTo: '/quotation/sticker', pathMatch: 'full' }
+       { path: '', redirectTo: '/quotation/plasticbag', pathMatch: 'full' }
 
     ]
   }
