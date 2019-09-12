@@ -15,6 +15,12 @@ export class Quote {
 
 }
 
+export class Specs {
+
+  constructor(public width: number, public sideWidth: number, public height: number, public thickness: number, public bagType:string) { };
+
+}
+
 @Component({
   selector: 'app-plasticbag',
   templateUrl: './plasticbag.component.html',
@@ -137,5 +143,38 @@ export class PlasticbagComponent implements OnInit {
   ngOnInit() {
 
   }
+calcQuote(bagSpecs:Specs):Quote[]{
+  
+  let QUOTE_DATA: Quote[] = [];
 
+  for (var i = 0; i < 3; i++) {
+
+    if (!bagSpecs.sideWidth)
+      this.areaPerPcsInSM = bagSpecs.width * bagSpecs.height / 10000;
+    else
+      this.areaPerPcsInSM = bagSpecs.height * (bagSpecs.width + bagSpecs.sideWidth * 2) / 10000;
+
+    let volumePerPcsInCM: number = this.areaPerPcsInSM * bagSpecs.thickness / 100000
+    let weight: number = (volumePerPcsInCM * this.quantity) * 1000;
+
+    if (bagSpecs.bagType == 'softloop') {
+      this.totalPriceSGD = weight * this.costIndex * 1.5 + this.serviceFee
+      this.unitPriceSGD = this.totalPriceSGD / this.quantity;
+    }
+    else {
+
+      this.totalPriceSGD = weight * this.costIndex + this.serviceFee
+      this.unitPriceSGD = this.totalPriceSGD / this.quantity;
+    }
+    let quote = new Quote(this.quantity, parseFloat(this.unitPriceSGD.toFixed(3)), parseFloat(this.totalPriceSGD.toFixed(0)), parseFloat(weight.toFixed(0)));
+    this.QUOTE_DATA.push(quote);
+
+
+    if (i == 0)
+      this.quantity = 10000;
+    else
+      this.quantity = 20000;
+  }
+  return QUOTE_DATA;
+}
 }
