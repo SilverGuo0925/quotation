@@ -17,18 +17,18 @@ export class Quote {
 
 export class Specs {
 
-  constructor(public bagType: string, public width: number, public sideWidth: number, public height: number, public thickness: number ) { };
+  constructor(public size: string, public bagType: string, public width: number, public sideWidth: number, public height: number, public thickness: number ) { };
 
   public toString(): string {
 
     let specs: string = "";
 
     if (!this.sideWidth)
-      specs = specs + this.width + " x " + this.height + "cm,";
+      specs = specs + this.width + "x" + this.height + "cm,";
     else
-      specs = specs + this.width + " + " + this.sideWidth*2 +  " x " + this.height + "cm,";
+      specs = specs + this.width + "+" + this.sideWidth*2 +  "x" + this.height + "cm,";
 
-    specs = specs + this.thickness + "C.";
+    specs = specs + this.thickness + "C";
     return specs;
   }
 
@@ -36,7 +36,7 @@ export class Specs {
 
 export class Data {
 
-  constructor(public specs: string, public qty5kPrice: number, public qty10kPrice: number, public qty20kPrice: number) { };
+  constructor(public size: string,public specs: string, public qty5kPrice: number, public qty10kPrice: number, public qty20kPrice: number) { };
 
 }
 
@@ -54,10 +54,13 @@ export class PlasticbagComponent implements OnInit {
 
   isDivVisible = false;
   displayedColumns: string[] = ['quantity', 'unitPrice', 'totalPrice', 'weight'];
-  displayedColumnsCS: string[] = ['BagSpecs', '5000pcs', '10000pcs', '20000pcs'];
+  displayedColumnsCS: string[] = ['size','bagSpecs', '5Kpcs', '10Kpcs', '20Kpcs'];
+  displayedColumnsCS2: string[] = ['bagSpecs', '5Kpcs', '10Kpcs', '20Kpcs'];
 
   dataSource;
   dsSinglet;
+  dsDieCut;
+  dsSoftLoop;
   options: FormGroup;
   bagTypes: Material[] = [
     { value: 'singlet', viewValue: 'Singlet Bag' },
@@ -109,11 +112,11 @@ export class PlasticbagComponent implements OnInit {
     else this.specs = "Bag Specs: " + "Tote Bag" + ",";
 
     if (!this.options.value.sideWidth)
-      this.specs = this.specs + this.options.value.width + " x " + this.options.value.height + " cm,";
+      this.specs = this.specs + this.options.value.width + "x" + this.options.value.height + "cm,";
     else
-      this.specs = this.specs + this.options.value.width + " + " + this.options.value.sideWidth + " + " + this.options.value.sideWidth + " x " + this.options.value.height + " cm,";
+      this.specs = this.specs + this.options.value.width + "+" + this.options.value.sideWidth*2 + "x" + this.options.value.height + "cm,";
 
-    this.specs = this.specs + this.options.value.thickness + " C.";
+    this.specs = this.specs + this.options.value.thickness + "C";
    
     //this.ELEMENT_DATA = [];
     this.arQuote = [];
@@ -158,7 +161,10 @@ export class PlasticbagComponent implements OnInit {
     this.options.reset();
   }
   ngOnInit() {
-    this.calcData();
+    this.calcSingletData();
+    this.calcDieCutData();
+    this.calcSoftLoopData();
+
   }
   calcQuote(bagSpecs: Specs): Data {
 
@@ -167,7 +173,7 @@ export class PlasticbagComponent implements OnInit {
 
     for (var i = 0; i < this.quantity.length; i++) {
 
-      if (!bagSpecs.sideWidth)
+      if (!bagSpecs.sideWidth||bagSpecs.sideWidth==0)
         this.areaPerPcsInSM = bagSpecs.width * bagSpecs.height / 10000;
       else
         this.areaPerPcsInSM = bagSpecs.height * (bagSpecs.width + bagSpecs.sideWidth * 2) / 10000;
@@ -188,25 +194,25 @@ export class PlasticbagComponent implements OnInit {
       arQuote.push(quote);
     }
 
-   let data =new Data(bagSpecs.toString(),arQuote[0].totalPrice,arQuote[1].totalPrice,arQuote[2].totalPrice);
+   let data =new Data( bagSpecs.size, bagSpecs.toString(),arQuote[0].totalPrice,arQuote[1].totalPrice,arQuote[2].totalPrice);
     return data;
   }
 
-  calcData() {
+  calcSingletData() {
   
     spec :Specs;
     data:Data;
    let  arData:Data[]=[];
     let arSpecs: Specs[] = [];
    
-    arSpecs.push(new Specs('singlet',17,4,28,5));
-    arSpecs.push(new Specs('singlet',20,5,32,5));
-    arSpecs.push(new Specs('singlet',25,5.5,36,5));
-    arSpecs.push(new Specs('singlet',25,5.5,42,5));
-    arSpecs.push(new Specs('singlet',28,5.5,48,5));
-    arSpecs.push(new Specs('singlet',30,6,50,5));
-    arSpecs.push(new Specs('singlet',35,7,56,5));
-    arSpecs.push(new Specs('singlet',40,8,60,5));
+    arSpecs.push(new Specs('Small 1','singlet',17,4,28,5));
+    arSpecs.push(new Specs('Small 2','singlet',20,5,32,5));
+    arSpecs.push(new Specs('Medium 1','singlet',25,5.5,36,5));
+    arSpecs.push(new Specs('Medium 2','singlet',25,5.5,42,5));
+    arSpecs.push(new Specs('Medium 3','singlet',28,5.5,48,5));
+    arSpecs.push(new Specs('Medium 4','singlet',30,6,50,5));
+    arSpecs.push(new Specs('Large 1','singlet',35,7,56,5));
+    arSpecs.push(new Specs('Large 2','singlet',40,8,60,5));
 
     for (var i = 0; i < arSpecs.length; i++) {
      let spec = arSpecs[i];
@@ -214,5 +220,72 @@ export class PlasticbagComponent implements OnInit {
      arData.push(data);
     }
     this.dsSinglet=arData;
+  }
+  calcDieCutData() {
+  
+    spec :Specs;
+    data:Data;
+   let  arData:Data[]=[];
+    let arSpecs: Specs[] = [];
+   
+    arSpecs.push(new Specs('Thin','diecut',25,0,30,8));
+    arSpecs.push(new Specs('Thin','diecut',25,6,30,8));
+
+    arSpecs.push(new Specs('Normal','diecut',25,0,35,10));
+    arSpecs.push(new Specs('Normal','diecut',25,6,35,10));
+
+    arSpecs.push(new Specs('Common','diecut',30,0,40,12));
+    arSpecs.push(new Specs('Common','diecut',30,8,40,12));
+
+    arSpecs.push(new Specs('Common','diecut',35,0,45,12));
+    arSpecs.push(new Specs('Common','diecut',35,8,45,12));
+
+    arSpecs.push(new Specs('Thick','diecut',40,0,50,14));
+    arSpecs.push(new Specs('Thick','diecut',40,10,50,14));
+
+    arSpecs.push(new Specs('Thick','diecut',45,0,55,14));
+    arSpecs.push(new Specs('Thick','diecut',45,12,55,14));
+
+
+    for (var i = 0; i < arSpecs.length; i++) {
+     let spec = arSpecs[i];
+     let data =this.calcQuote(spec);
+     arData.push(data);
+    }
+    this.dsDieCut=arData;
+  }
+
+  calcSoftLoopData() {
+  
+    spec :Specs;
+    data:Data;
+   let  arData:Data[]=[];
+    let arSpecs: Specs[] = [];
+   
+    arSpecs.push(new Specs('Thin','softloop',25,0,30,8));
+    arSpecs.push(new Specs('Thin','softloop',25,6,30,8));
+
+    arSpecs.push(new Specs('Normal','softloop',25,0,35,10));
+    arSpecs.push(new Specs('Normal','softloop',25,6,35,10));
+
+    arSpecs.push(new Specs('Common','softloop',30,0,40,12));
+    arSpecs.push(new Specs('Common','softloop',30,8,40,12));
+
+    arSpecs.push(new Specs('Common','softloop',35,0,45,12));
+    arSpecs.push(new Specs('Common','softloop',35,8,45,12));
+
+    arSpecs.push(new Specs('Thick','softloop',40,0,50,14));
+    arSpecs.push(new Specs('Thick','softloop',40,10,50,14));
+
+    arSpecs.push(new Specs('Thick','softloop',45,0,55,14));
+    arSpecs.push(new Specs('Thick','softloop',45,12,55,14));
+
+
+    for (var i = 0; i < arSpecs.length; i++) {
+     let spec = arSpecs[i];
+     let data =this.calcQuote(spec);
+     arData.push(data);
+    }
+    this.dsSoftLoop=arData;
   }
 }
