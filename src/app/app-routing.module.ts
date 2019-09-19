@@ -11,8 +11,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'quotation',
-    loadChildren: () => import('./quotation/quotation.module').then(mod => mod.QuotationModule),
-    data: { preload: true }
+   // loadChildren: () => import('./quotation/quotation.module').then(mod => mod.QuotationModule)//,
+   // data: { preload: true }
+   loadChildren: './quotation/quotation.module#QuotationModule'
   },
   { path: 'documentation', component: DocumentationComponent },
   { path: 'track', component: TrackComponent },

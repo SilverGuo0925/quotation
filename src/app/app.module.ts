@@ -29,7 +29,7 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     FlexLayoutModule,
     ClarityModule,
-    QuotationModule 
+  // QuotationModule 
   ],
   declarations: [AppComponent, TopNavComponent, LoginComponent, PageNotFoundComponent, DocumentationComponent, TrackComponent, HomeComponent],
   //entryComponents: [DialogContentComponent],
