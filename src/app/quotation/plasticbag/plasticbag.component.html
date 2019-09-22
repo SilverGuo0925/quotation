@@ -51,16 +51,18 @@
                         <mat-form-field>
                           <mat-label>Side Width (cm) (Optional)</mat-label>
                           <input matInput type="number"
-                            placeholder="e.g. the total side width is 12 if key in 6 for side width"
+                            placeholder=""
                             formControlName="sideWidth">
                           <mat-error *ngIf="options.get('sideWidth').invalid">Min number: 1</mat-error>
+                          <mat-hint>e.g. the total side width is 12 if key in 6 for side width</mat-hint>
                         </mat-form-field>
                         <mat-form-field>
                           <mat-label>Thickness for Two Layers (C) (1C=0.01mm)</mat-label>
                           <input matInput type="number"
-                            placeholder="e.g. 5 is most common for fairprice thickness bag while 12 for shopping bag"
+                            placeholder=""
                             formControlName="thickness">
                           <mat-error *ngIf="options.get('thickness').invalid">Min number: 3</mat-error>
+                          <mat-hint>e.g. 5 is most common for fairprice thickness bag while 12 for shopping bag</mat-hint>
                         </mat-form-field>
                       </form>
                     </div>

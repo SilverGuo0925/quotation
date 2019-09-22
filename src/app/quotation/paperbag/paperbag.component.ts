@@ -32,18 +32,18 @@ export class PaperbagComponent implements OnInit {
   dataSource;
   options: FormGroup;
   bagTypes: Material[] = [
-    { value: 'singlet', viewValue: 'Singlet Plastic Bag' },
-    { value: 'diecut', viewValue: 'Die Cut Bag' },
-    { value: 'softloop', viewValue: 'Soft Loop Bag' }
+    { value: 'whitecardboard', viewValue: 'White Cardboard' },
+    { value: 'kraft', viewValue: 'Kraft' },
+    { value: 'whitekraft', viewValue: 'White Kraft' }
   ]
   areaPerPcsInSM: number;
   totalPriceSGD: number;
   unitPriceSGD: number;
 
-  costIndex: number = 6.4;//SGD6.4/KG for sticker 
-  airIndex: number = 6;//SGD6.0/KG for air shipping fee
+  costIndex: number[] = [15, 10, 7.5, 7, 6.5];//0-25,9/15-15;25-50,7.5/12.5-10;50-100,6/10-7.5;100...7
+  whitekraftIndex: number = 1.3;//SGD6.0/KG for air shipping fee
   serviceFee: number = 50; //SGD50 for service fee;
-  quantity: number = 5000;
+  quantity: number[] = [500, 1000, 2000, 3000, 5000];
 
 
   constructor(fb: FormBuilder, private sysMgr: SysMgrService) {
@@ -51,8 +51,8 @@ export class PaperbagComponent implements OnInit {
       height: ['', [Validators.required, Validators.min(1)]],
       width: ['', [Validators.required, Validators.min(1)]],
       sideWidth: [''],
-      thickness: [''],
-      bagType: ['singlet']
+      thickness: ['', [Validators.required, Validators.min(160)]],
+      bagType: ['whitecardboard']
     });
   }
 
@@ -69,37 +69,88 @@ export class PaperbagComponent implements OnInit {
       return;
     }
 
-    this.quantity = 5000;
     //this.ELEMENT_DATA = [];
     this.QUOTE_DATA = [];
 
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < this.quantity.length; i++) {
 
-      if (!this.options.value.sideWidth)
-        this.areaPerPcsInSM = this.options.value.width * this.options.value.height / 10000;
-      else
-        this.areaPerPcsInSM = this.options.value.height * (this.options.value.width + this.options.value.sideWidth) / 10000;
+      let unfoldHeight: number = this.options.value.height + 4 + 2 + this.options.value.sideWidth / 2;
+      let unfoldWidth: number = 2 + 2 * (this.options.value.width + this.options.value.sideWidth);
 
-      let volumePerPcsInCM: number = this.areaPerPcsInSM * this.options.value.thickness / 100000
-      let weight: number = (volumePerPcsInCM * this.quantity) * 1000;
+      this.areaPerPcsInSM = unfoldWidth * unfoldHeight / 10000;
 
-      if (this.options.value.bagType == 'softloop') {
-        this.totalPriceSGD = weight * this.costIndex * 1.5 + this.serviceFee
-        this.unitPriceSGD = this.totalPriceSGD / this.quantity;
+      // let volumePerPcsInCM: number = this.areaPerPcsInSM *  / 100000
+      let weight: number = (this.areaPerPcsInSM * this.quantity[i]) * this.options.value.thickness / 1000;
+
+      if (this.options.value.bagType == 'whitekraft') {
+        if (weight <= 25) {
+          this.totalPriceSGD = this.whitekraftIndex * weight * this.costIndex[0] + this.serviceFee
+          this.unitPriceSGD = this.totalPriceSGD / this.quantity[i];
+        }
+        else {
+          if (weight - 50 <= 0) {
+            this.totalPriceSGD = this.whitekraftIndex * ((weight - 25) * this.costIndex[1] + 25 * this.costIndex[0]) + this.serviceFee
+            this.unitPriceSGD = this.totalPriceSGD / this.quantity[i];
+          }
+          else {
+            if (weight - 100 <= 0) {
+              this.totalPriceSGD = this.whitekraftIndex * ((weight - 50) * this.costIndex[2] + (50 - 25) * this.costIndex[1] + 25 * this.costIndex[0]) + this.serviceFee
+              this.unitPriceSGD = this.totalPriceSGD / this.quantity[i];
+            }
+            else {
+              if (weight - 200 <= 0) {
+                this.totalPriceSGD = this.whitekraftIndex * ((weight - 100) * this.costIndex[3] + (100 - 50) * this.costIndex[2] + (50 - 25) * this.costIndex[1] + 25 * this.costIndex[0]) + this.serviceFee
+                this.unitPriceSGD = this.totalPriceSGD / this.quantity[i];
+              }
+              else {
+                //>200kg
+                this.totalPriceSGD = this.whitekraftIndex * ((weight - 200) * this.costIndex[4] + (200 - 100) * this.costIndex[3] + (100 - 50) * this.costIndex[2] + (50 - 25) * this.costIndex[1] + 25 * this.costIndex[0]) + this.serviceFee
+                this.unitPriceSGD = this.totalPriceSGD / this.quantity[i];
+
+              }
+            }
+          }
+        }
       }
       else {
+        if (weight <= 25) {
+          this.totalPriceSGD = weight * this.costIndex[0] + this.serviceFee
+          this.unitPriceSGD = this.totalPriceSGD / this.quantity[i];
+        }
+        else {
+          if (weight - 50 <= 0) {
+            this.totalPriceSGD = (weight - 25) * this.costIndex[1] + 25 * this.costIndex[0] + this.serviceFee
+            this.unitPriceSGD = this.totalPriceSGD / this.quantity[i];
+          }
+          else {
+            if (weight - 100 <= 0) {
+              this.totalPriceSGD = (weight - 50) * this.costIndex[2] + (50 - 25) * this.costIndex[1] + 25 * this.costIndex[0] + this.serviceFee
+              this.unitPriceSGD = this.totalPriceSGD / this.quantity[i];
+            }
+            else {
+              if (weight - 200 <= 0) {
+                this.totalPriceSGD = (weight - 100) * this.costIndex[3] + (100 - 50) * this.costIndex[2] + (50 - 25) * this.costIndex[1] + 25 * this.costIndex[0] + this.serviceFee
+                this.unitPriceSGD = this.totalPriceSGD / this.quantity[i];
+              }
+              else {
+                //>200kg
+                this.totalPriceSGD = (weight - 200) * this.costIndex[4] + (200 - 100) * this.costIndex[3] + (100 - 50) * this.costIndex[2] + (50 - 25) * this.costIndex[1] + 25 * this.costIndex[0] + this.serviceFee
+                this.unitPriceSGD = this.totalPriceSGD / this.quantity[i];
 
-        this.totalPriceSGD = weight * this.costIndex + this.serviceFee
-        this.unitPriceSGD = this.totalPriceSGD / this.quantity;
+              }
+            }
+          }
+        }
       }
-      let quote = new Quote(this.quantity, parseFloat(this.unitPriceSGD.toFixed(3)), parseFloat(this.totalPriceSGD.toFixed(2)), parseFloat(weight.toFixed(2)));
+
+
+
+
+      let quote = new Quote(this.quantity[i], parseFloat(this.unitPriceSGD.toFixed(3)), parseFloat(this.totalPriceSGD.toFixed(0)), parseFloat(weight.toFixed(0)));
       this.QUOTE_DATA.push(quote);
 
 
-      if (i == 0)
-        this.quantity = 10000;
-      else
-        this.quantity = 20000;
+
     }
 
 
@@ -114,7 +165,9 @@ export class PaperbagComponent implements OnInit {
 
 
   }
-
+  onReset() {
+    this.options.reset();
+  }
   ngOnInit() {
 
   }

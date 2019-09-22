@@ -1,6 +1,6 @@
-<!-- 
 
-<div class="clr-row">
+
+<!-- <div class="clr-row">
   <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
       <div class="card">
           <div class="card-header">
@@ -23,7 +23,7 @@
                     <mat-error *ngIf="options.get('width').invalid">Min number: 1</mat-error>
                   </mat-form-field>
                   <mat-form-field >
-                    <input matInput type="number" placeholder="Thickness for Two Layers (C,1C=0.01mm)" formControlName="thickness">
+                    <input matInput type="number" placeholder="Thickness (gsm,gram per squre meter)" formControlName="thickness">
                     <mat-error *ngIf="options.get('width').invalid">Min number: 1</mat-error>
                   </mat-form-field>
                   <mat-form-field>
@@ -95,3 +95,321 @@
       </div>
   </div>
 </div> -->
+
+<div class="dox-wrapper">
+  <div class="dox-header">
+    <h1>Paper Bag</h1>
+  </div>
+  <section class="dox-content">
+    <div class="dox-content-wrapper">
+
+      <clr-tabs>
+        <clr-tab>
+          <button clrTabLink id="link1">Custom Size</button>
+          <clr-tab-content id="content1" *clrIfActive="true">
+            <div class="clr-row">
+              <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+
+                <!-- <div class="card">
+                  <div class="card-header">
+                    Type of Bag
+                  </div>
+                  <div class="card-img">
+                    <img src="assets/img/BagLayout.png">
+                  </div>
+                </div> -->
+
+                <div class="card">
+                  <div class="card-header">
+                    Dimension
+                  </div>
+                  <div class="card-block">
+                    <div class="card-text">
+                      <form class="example-form" [formGroup]="options" (ngSubmit)="onSubmit()">
+                        <mat-form-field>
+                          <mat-label>Type of Bag Material</mat-label>
+                          <mat-select formControlName="bagType">
+                            <mat-option *ngFor="let bagType of bagTypes" [value]="bagType.value">
+                              {{bagType.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                          <input matInput type="number" placeholder="Height (cm)" formControlName="height">
+                          <mat-error *ngIf="options.get('height').invalid">Min number: 1</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput type="number" placeholder="Width (cm)" formControlName="width">
+                          <mat-error *ngIf="options.get('width').invalid">Min number: 1</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-label>Side Width (cm)</mat-label>
+                          <input matInput type="number"
+                            placeholder=""
+                            formControlName="sideWidth">
+                          <mat-error *ngIf="options.get('sideWidth').invalid">Min number: 1</mat-error>
+                          <mat-hint>e.g. the total side width is 10 if key in 10 for side width</mat-hint>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-label>Thickness (gsm,gram per squre meter)</mat-label>
+                          <input matInput type="number"
+                            placeholder=""
+                            formControlName="thickness">
+                          <mat-error *ngIf="options.get('thickness').invalid">Min number: 160</mat-error>
+                          <mat-hint>e.g. 250 is most common for kraft/white cardboard bag while 160 for white kraft bag</mat-hint>
+                        </mat-form-field>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <button class="btn btn-sm btn-link" (click)="onSubmit()">Quote</button>
+                    <button class="btn btn-sm btn-link" (click)="onReset()">Reset</button>
+                  </div>
+                </div>
+
+
+              </div>
+
+            </div>
+
+            <div class="clr-row" [style.visibility]="isDivVisible ? 'visible' : 'hidden'">
+              <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+                <div class="card">
+                  <div class="card-header">
+                    Quotation
+                  </div>
+                  <div class="card-block">
+                    <div class="card-text">
+
+                      <table mat-table [dataSource]="dataSource" class="example-table">
+
+                        <!--- Note that these columns can be defined in any order.
+                                              The actual rendered columns are set as a property on the row definition" -->
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="quantity">
+                          <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                          <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="unitPrice">
+                          <th mat-header-cell *matHeaderCellDef> Unit Price(SGD) </th>
+                          <td mat-cell *matCellDef="let element"> {{element.unitPrice}} </td>
+                        </ng-container>
+
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="totalPrice">
+                          <th mat-header-cell *matHeaderCellDef> Total Price(SGD) </th>
+                          <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
+                        </ng-container>
+
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="weight">
+                          <th mat-header-cell *matHeaderCellDef> Weight(Kg) </th>
+                          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      </table>
+
+                    </div>
+                    <br>{{specs}}
+                  </div>
+
+                </div>
+
+  
+              </div>
+             
+            </div>
+
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink>Common Size</button>
+          <clr-tab-content *clrIfActive>
+
+            <div class="clr-row">
+              <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+                <div class="card">
+                  <div class="card-header">
+                    White Cardboard Bag
+                  </div>
+                  <div class="card-block">
+                    <div class="card-text">
+
+                      <table mat-table [dataSource]="dsSinglet" class="example-table">
+
+                        <!--- Note that these columns can be defined in any order.
+                                              The actual rendered columns are set as a property on the row definition" -->
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="size">
+                          <th mat-header-cell *matHeaderCellDef> Size </th>
+                          <td mat-cell *matCellDef="let element"> {{element.size}} </td>
+                        </ng-container>
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="bagSpecs">
+                          <th mat-header-cell *matHeaderCellDef> W+SW*H,C </th>
+                          <td mat-cell *matCellDef="let element"> {{element.specs}} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="5Kpcs">
+                          <th mat-header-cell *matHeaderCellDef> 5K($)</th>
+                          <td mat-cell *matCellDef="let element"> {{element.qty5kPrice}} </td>
+                        </ng-container>
+
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="10Kpcs">
+                          <th mat-header-cell *matHeaderCellDef> 10K($) </th>
+                          <td mat-cell *matCellDef="let element"> {{element.qty10kPrice}} </td>
+                        </ng-container>
+
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="20Kpcs">
+                          <th mat-header-cell *matHeaderCellDef> 20K($) </th>
+                          <td mat-cell *matCellDef="let element"> {{element.qty20kPrice}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsCS"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsCS;"></tr>
+                      </table>
+
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    Karft Bag
+                  </div>
+                  <div class="card-block">
+                    <div class="card-text">
+
+                      <table mat-table [dataSource]="dsDieCut" class="example-table">
+
+                        <!--- Note that these columns can be defined in any order.
+                                              The actual rendered columns are set as a property on the row definition" -->
+                        <!-- Position Column -->
+                        <!-- <ng-container matColumnDef="size">
+                          <th mat-header-cell *matHeaderCellDef> Size </th>
+                          <td mat-cell *matCellDef="let element"> {{element.size}} </td>
+                        </ng-container> -->
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="bagSpecs">
+                          <th mat-header-cell *matHeaderCellDef> W+SW*H,C </th>
+                          <td mat-cell *matCellDef="let element"> {{element.specs}} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="5Kpcs">
+                          <th mat-header-cell *matHeaderCellDef> 5K($)</th>
+                          <td mat-cell *matCellDef="let element"> {{element.qty5kPrice}} </td>
+                        </ng-container>
+
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="10Kpcs">
+                          <th mat-header-cell *matHeaderCellDef> 10K($) </th>
+                          <td mat-cell *matCellDef="let element"> {{element.qty10kPrice}} </td>
+                        </ng-container>
+
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="20Kpcs">
+                          <th mat-header-cell *matHeaderCellDef> 20K($)) </th>
+                          <td mat-cell *matCellDef="let element"> {{element.qty20kPrice}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsCS2"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsCS2;"></tr>
+                      </table>
+
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    White Kraft Bag
+                  </div>
+                  <div class="card-block">
+                    <div class="card-text">
+
+                      <table mat-table [dataSource]="dsSoftLoop" class="example-table">
+
+                        <!--- Note that these columns can be defined in any order.
+                                              The actual rendered columns are set as a property on the row definition" -->
+                        <!-- Position Column -->
+                        <!-- <ng-container matColumnDef="size">
+                          <th mat-header-cell *matHeaderCellDef> Size </th>
+                          <td mat-cell *matCellDef="let element"> {{element.size}} </td>
+                        </ng-container> -->
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="bagSpecs">
+                          <th mat-header-cell *matHeaderCellDef> W+SW*H,C </th>
+                          <td mat-cell *matCellDef="let element"> {{element.specs}} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="5Kpcs">
+                          <th mat-header-cell *matHeaderCellDef> 5K($)</th>
+                          <td mat-cell *matCellDef="let element"> {{element.qty5kPrice}} </td>
+                        </ng-container>
+
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="10Kpcs">
+                          <th mat-header-cell *matHeaderCellDef> 10K($) </th>
+                          <td mat-cell *matCellDef="let element"> {{element.qty10kPrice}} </td>
+                        </ng-container>
+
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="20Kpcs">
+                          <th mat-header-cell *matHeaderCellDef> 20K($)</th>
+                          <td mat-cell *matCellDef="let element"> {{element.qty20kPrice}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsCS2"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsCS2;"></tr>
+                      </table>
+
+                    </div>
+
+                  </div>
+
+                </div>
+             
+              </div>
+            
+            </div>
+
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink>FQA</button>
+          <clr-tab-content *clrIfActive>
+           <h3>MOQ</h3>
+           <p>MOQ mean Minimum of Quantity, the MOQ for plasitc bag is 500 pcs.</p>
+           <h3>Printing Version Fee</h3>
+           <p>No version fee required, the additional fee may apply if special printing craft is required. e.g. gold/silver hot stamping fee is $0.03/pcs if required.</p>
+           <h3>Delivery Fee</h3>
+           <p>$30 per trip.</p>
+           <h3>GST</h3>
+           <p>the quotation generated by our instant quote is GST inclusive.</p>
+           <h3>Lead Time</h3>
+           <p>4 -5 weeks after quotation and design is signed.</p>
+           <h3>Bag Material</h3>
+           <p>White Cardboard:</p>
+           <p>Kraft:</p>
+           <p>White Kraft:</p>
+          </clr-tab-content>
+        </clr-tab>
+      </clr-tabs>
+
+
+    </div>
+  </section>
+</div>
