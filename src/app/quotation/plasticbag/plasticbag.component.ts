@@ -159,6 +159,8 @@ export class PlasticbagComponent implements OnInit {
   }
   onReset() {
     this.options.reset();
+    this.isDivVisible = false;
+
   }
   ngOnInit() {
     this.calcSingletData();
