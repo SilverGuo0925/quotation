@@ -66,9 +66,9 @@
               <clr-icon shape="caret down"></clr-icon>
           </button>
           <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-              <a routerLink="/login" clrDropdownItem>About</a>
+              <a *ngIf="!currentUser" routerLink="/login" clrDropdownItem>Login</a>
               <a href="..." clrDropdownItem>Preferences</a>
-              <a href="..." clrDropdownItem>Log out</a>
+              <a *ngIf="currentUser" (click)="logout()" clrDropdownItem>Log out</a>
           </clr-dropdown-menu>
       </clr-dropdown>
   </div>

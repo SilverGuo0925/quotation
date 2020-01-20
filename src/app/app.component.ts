@@ -2,7 +2,9 @@ import { Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit,Opti
 import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { SysMgrService } from './services/sys-mgr.service';
-
+import {AuthenticationService} from './services/authentication.service';
+import {Router} from '@angular/router';
+import { User } from './models/user';
 
 @Component({
   selector: 'app-root',
@@ -26,13 +28,21 @@ export class AppComponent implements AfterViewInit{
   value: number;
   expanded=false;
   @ViewChild('sidenav') sidenav:ElementRef;
+  currentUser:User;
 
-  constructor(private sysMgrService: SysMgrService){}
+  constructor(private sysMgrService: SysMgrService, private router: Router,
+    private authenticationService: AuthenticationService ){
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    }
 
   ngAfterViewInit(){
     this.sysMgrService.sidenav=this.sidenav;
   }
 
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+}
   
 }
 

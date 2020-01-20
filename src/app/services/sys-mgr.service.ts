@@ -7,10 +7,8 @@ import { catchError, retry } from 'rxjs/operators';
 
 
 export interface Config {
-  userId: number;
   id: number;
-  title:string;
-  body:string;
+  content:string;
 }
 
 @Injectable({
@@ -19,8 +17,8 @@ export interface Config {
 export class SysMgrService {
 
   sidenav:any;
-  configUrl = 'https://jsonplaceholder.typicode.com/posts/42';
-
+  // configUrl = 'https://jsonplaceholder.typicode.com/posts/42';
+  configUrl='http://localhost:8080/greeting'
  
   constructor(private http:HttpClient) { }
 

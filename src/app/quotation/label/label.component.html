@@ -10,10 +10,8 @@
     <div>
       <button mat-button (click)="clear(); showConfig()">get</button>
       <span *ngIf="config">
-        <p>body is "{{config.userId}}"</p>
         <p>body is "{{config.id}}"</p>
-        <p>body is "{{config.title}}"</p>
-        <p>body is "{{config.body}}"</p>
+        <p>body is "{{config.content}}"</p>
       </span>
     </div>
     <p *ngIf="error" class="error">{{error | json}}</p>

@@ -21,7 +21,7 @@ export class AuthenticationService {
     })
   };
   user:User;
-  url='http://localhost:8080/demo-0.0.1-SNAPSHOT/pusers';
+  url='http://localhost:9000/api/login';
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -29,9 +29,6 @@ export class AuthenticationService {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
    this.user =new User();
-   this.user.username="dengting";
-   this.user.password="test";
-   this.user.token="test";
   }
 
   public get currentUserValue(): User {
@@ -39,18 +36,27 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string)  {
-    return this.http.post<User>(this.url,this.user,this.httpOptions )
+        return this.http.post<any>(this.url,{username,password},this.httpOptions )
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
+          this.user.token=user.token;
+          this.user.username=username;
+          this.user.password=password;
+          localStorage.setItem('currentUser', JSON.stringify(this.user));
+          this.currentUserSubject.next(this.user);
         }
 
-        return user;
+        return this.user;
       }));
 
   }
+
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+}
  
 }

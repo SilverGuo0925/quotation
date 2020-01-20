@@ -23,7 +23,10 @@
         <mat-error *ngIf="loginForm.get('password').invalid">Minimum length 8</mat-error>
       </mat-form-field>
     
-     <button class="app-button" mat-raised-button color="primary" type="submit">LOGIN</button>
+     <button [disabled]="loading" class="app-button" mat-raised-button color="primary" type="submit">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      LOGIN
+      </button>
     </form>
   </mat-card-content>
 </mat-card>

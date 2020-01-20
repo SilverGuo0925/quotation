@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import {DocumentationComponent} from './documentation/documentation.component';
 import {TrackComponent} from './track/track.component';
 import {HomeComponent} from './home/home.component';
+import {AuthGuard} from './helpers';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,7 +16,7 @@ const routes: Routes = [
    // data: { preload: true }
    loadChildren: './quotation/quotation.module#QuotationModule'
   },
-  { path: 'documentation', component: DocumentationComponent },
+  { path: 'documentation', component: DocumentationComponent, canActivate: [AuthGuard] },
   { path: 'track', component: TrackComponent },
   { path: 'home', component: HomeComponent },
   { path: '**', component: PageNotFoundComponent }
