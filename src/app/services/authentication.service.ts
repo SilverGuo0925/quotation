@@ -21,7 +21,10 @@ export class AuthenticationService {
     })
   };
   user:User;
+  token:string;
   url='http://localhost:9000/api/login';
+  url_profile='http://localhost:9000/api/user/profile';
+
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -58,5 +61,20 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
 }
- 
+
+getProfile(token: string)  {
+  return this.http.post<any>(this.url_profile,{token},this.httpOptions )
+.pipe(map(user => {
+  // login successful if there's a jwt token in the response
+  if (user && user.username) {
+    // store user details and jwt token in local storage to keep user logged in between page refreshes
+    this.user.username=user.username;
+   
+  }
+
+  return this.user;
+}));
+
+}
+
 }

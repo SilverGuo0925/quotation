@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import {DocumentationComponent} from './documentation/documentation.component';
 import {TrackComponent} from './track/track.component';
 import {HomeComponent} from './home/home.component';
+import {ProfileComponent} from './profile/profile.component';
 import {AuthGuard} from './helpers';
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'documentation', component: DocumentationComponent, canActivate: [AuthGuard] },
   { path: 'track', component: TrackComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: '**', component: PageNotFoundComponent }
 
 ];

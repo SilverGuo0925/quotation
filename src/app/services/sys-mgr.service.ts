@@ -11,6 +11,10 @@ export interface Config {
   content:string;
 }
 
+export interface Token {
+  token: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -49,5 +53,7 @@ private handleError(error: HttpErrorResponse) {
 public toggleNav() {
   this.sidenav.toggle();
 }
+
+
 
 }
