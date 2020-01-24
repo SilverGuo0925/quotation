@@ -13,9 +13,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'quotation',
-   // loadChildren: () => import('./quotation/quotation.module').then(mod => mod.QuotationModule)//,
+    loadChildren: () => import('./quotation/quotation.module').then(mod => mod.QuotationModule)//,
    // data: { preload: true }
-   loadChildren: './quotation/quotation.module#QuotationModule'
+   //loadChildren: './quotation/quotation.module#QuotationModule'
   },
   { path: 'documentation', component: DocumentationComponent, canActivate: [AuthGuard] },
   { path: 'track', component: TrackComponent },
@@ -24,7 +24,6 @@ const routes: Routes = [
   { path: '**', component: PageNotFoundComponent }
 
 ];
-
 
 @NgModule({
    imports: [RouterModule.forRoot(routes, { useHash: true })],

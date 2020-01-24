@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Config,SysMgrService} from '../../services/sys-mgr.service';
+import {saveAs } from "file-saver";
+
 
 @Component({
   selector: 'app-label',
@@ -12,7 +14,7 @@ export class LabelComponent implements OnInit {
   error: any;
   headers: string[];
   config: Config;
-
+  fileName: string;
   constructor(private sysMgr:SysMgrService) { }
 
   ngOnInit() {
@@ -31,5 +33,13 @@ export class LabelComponent implements OnInit {
     this.error = undefined;
   }
 
-  
+  exportExcelFile() {
+    this.fileName='sample';
+    this.sysMgr.downloadFile()
+      .subscribe(
+        (blob) => saveAs(blob,this.fileName), // success path
+        error => this.error = error // error path
+      );
+  }
+ 
 }

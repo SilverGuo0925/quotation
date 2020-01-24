@@ -15,6 +15,15 @@
       </span>
     </div>
     <p *ngIf="error" class="error">{{error | json}}</p>
+
+  <h3>download excel file</h3>
+  <div>
+    <button mat-button (click)="exportExcelFile()">get</button>
+    
   </div>
+  <p *ngIf="error" class="error">{{error | json}}</p>
+
+  </div>
+
   </section>
 </div>

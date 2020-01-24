@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpHeaders,HttpClient} from '@angular/common/http';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { map,catchError, retry } from 'rxjs/operators';
 
 
 export interface Config {
@@ -20,10 +20,13 @@ export interface Token {
 })
 export class SysMgrService {
 
+  httpOptions = {
+  };
   sidenav:any;
   // configUrl = 'https://jsonplaceholder.typicode.com/posts/42';
-  configUrl='http://localhost:8080/greeting'
- 
+  configUrl='http://localhost:8080/greeting';
+  fileUrl='http://localhost:9000/api/exportFile';
+
   constructor(private http:HttpClient) { }
 
  getConfig() {
@@ -54,6 +57,19 @@ public toggleNav() {
   this.sidenav.toggle();
 }
 
+// downloadFile() {
+//   return this.http.get<Config>(this.fileUrl)
+//     .pipe(
+//       retry(3), // retry a failed request up to 3 times
+//       catchError(this.handleError) // then handle the error
+//     );
+// }
 
-
+downloadFile(){
+  return this.http.get(this.fileUrl,this.httpOptions)
+      .pipe(map((res: any) => {
+        console.log('res', res);
+        return res.blob;
+      }));
+}
 }
