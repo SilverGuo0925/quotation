@@ -66,10 +66,10 @@ public toggleNav() {
 // }
 
 downloadFile(){
-  return this.http.get(this.fileUrl,this.httpOptions)
+  return this.http.get(this.fileUrl, {responseType: 'blob'})
       .pipe(map((res: any) => {
         console.log('res', res);
-        return res.blob;
+        return res;
       }));
 }
 }

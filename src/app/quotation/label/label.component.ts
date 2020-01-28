@@ -34,7 +34,7 @@ export class LabelComponent implements OnInit {
   }
 
   exportExcelFile() {
-    this.fileName='sample';
+    this.fileName='sample.xlsx';
     this.sysMgr.downloadFile()
       .subscribe(
         (blob) => saveAs(blob,this.fileName), // success path
