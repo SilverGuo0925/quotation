@@ -17,6 +17,10 @@ const routes: Routes = [
    // data: { preload: true }
    //loadChildren: './quotation/quotation.module#QuotationModule'
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule)//,
+  },
   { path: 'documentation', component: DocumentationComponent, canActivate: [AuthGuard] },
   { path: 'track', component: TrackComponent },
   { path: 'home', component: HomeComponent },

@@ -1,0 +1,24 @@
+
+<router-outlet></router-outlet>
+<!-- <main class="content-area">
+      <router-outlet></router-outlet>
+    </main> -->
+
+<clr-vertical-nav [clr-nav-level]="2" *ngIf="true">
+    <clr-vertical-nav-group routerLinkActive="active">
+        <a routerLink="./Bag" hidden aria-hidden="true">
+        </a>
+        <clr-icon shape="tags" clrVerticalNavIcon></clr-icon>
+        Customer
+        <clr-vertical-nav-group-children *clrIfExpanded>
+            <a clrVerticalNavLink routerLink="./searchcustomer" routerLinkActive="active">
+                Search
+            </a>
+            <a clrVerticalNavLink routerLink="./addcustomer" routerLinkActive="active">
+                Add 
+            </a>
+        </clr-vertical-nav-group-children>
+    </clr-vertical-nav-group>
+  
+    
+</clr-vertical-nav>
