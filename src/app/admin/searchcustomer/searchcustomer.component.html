@@ -1,10 +1,51 @@
-<form clrForm [formGroup]="dateForm" novalidate>
-  <h4>Reactive Form Demo</h4>
-  <clr-date-container>
-      <label for="dateControl">Date</label>
-      <input id="dateControl" type="date" clrDate formControlName="date"/>
-  </clr-date-container>
+
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Customer ID">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Start Date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker2" placeholder="End Date">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-button>Search</button>
+
 </form>
-<pre class="datepicker-output">
-  {{dateForm.value | json}}
-</pre>
+
+
+<clr-datagrid>
+  
+  <clr-dg-column>Customer ID</clr-dg-column>
+  <clr-dg-column>Company Name</clr-dg-column>
+  <clr-dg-column>Contact Person</clr-dg-column>
+  <clr-dg-column>Phone</clr-dg-column>
+  <clr-dg-column>Email</clr-dg-column>
+
+
+  <clr-dg-row *ngFor="let customer of customers">
+      <clr-dg-cell>{{customer.id}}</clr-dg-cell>
+      <clr-dg-cell>{{customer.companyName}}</clr-dg-cell>
+      <clr-dg-cell>{{customer.contactPerson}}</clr-dg-cell>
+      <clr-dg-cell>{{customer.phone}}</clr-dg-cell>
+      <clr-dg-cell>{{customer.email}}</clr-dg-cell>
+ 
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+        <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Customers per page</clr-dg-page-size>
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+        of {{pagination.totalItems}} customers
+    </clr-dg-pagination>
+</clr-dg-footer>
+</clr-datagrid>
+

@@ -1,3 +1,36 @@
-<p>
-  addcustomer works!
-</p>
+<h3>CREATE AN CUSTOMER</h3>
+<mat-divider></mat-divider>
+
+<form [hidden]= "isHidden" class="example-form" [formGroup]="options" (ngSubmit)="onSubmit()" >
+  <mat-form-field >
+    <input matInput type="text" placeholder="Contact Person" formControlName="contactPerson">
+  </mat-form-field>
+  <mat-form-field >
+    <input matInput type="text" placeholder="Company Name" formControlName="companyName">
+  </mat-form-field>
+  <mat-form-field >
+    <input matInput type="text" placeholder="Phone" formControlName="phone">
+  </mat-form-field>
+  <mat-form-field >
+    <input matInput type="text" placeholder="Customer ID" formControlName="customerId">
+  </mat-form-field>
+  <mat-form-field >
+    <input matInput type="text" placeholder="Email" formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field >
+    <input matInput type="text" placeholder="Address" formControlName="address">
+  </mat-form-field>
+  <mat-form-field >
+    <input matInput type="text" placeholder="Postcode" formControlName="postcode">
+  </mat-form-field>
+  <mat-form-field >
+    <input matInput type="text" placeholder="Building, Floor, Unit. etc" formControlName="buidingFloorUnit">
+  </mat-form-field>
+ <button class="app-button" mat-raised-button  type="submit">Create</button>
+</form>
+
+<p *ngIf="error" class="error">{{error | json}}</p>
+<p *ngIf="res" >{{res | json}}</p>
+
+
