@@ -10,7 +10,7 @@ import { Customer } from 'app/models/customer';
 })
 export class SearchcustomerComponent implements OnInit {
 
-
+  isDgHidden:boolean;
   cnt:number;
   customers:Customer[];
   error:any;
@@ -21,9 +21,10 @@ export class SearchcustomerComponent implements OnInit {
       customers=> this.customers=customers, // success path
       error => this.error = error // error path
     );
-this.cnt=this.customers.length;
     
   }
-
+  onEdit(customer:Customer){
+  this.isDgHidden=true;
+  }
   
 }
