@@ -1,0 +1,12 @@
+<h2>HEROES</h2>
+<div *ngIf="customer$ | async as customer">
+  <h3>"{{ customer.id }}"</h3>
+  <div>
+    <label>Id: </label>{{ customer.id }}</div>
+  <div>
+    <label>Address: </label>
+    <input [(ngModel)]="customer.address" placeholder="address"/>
+
+  </div>
+    <button (click)="gotoCustomers(customer)">Back</button>
+</div>

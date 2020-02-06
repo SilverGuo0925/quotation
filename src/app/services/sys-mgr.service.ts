@@ -28,6 +28,8 @@ export class SysMgrService {
   fileUrl='http://localhost:9000/api/exportFile';
   customerUrl='http://localhost:9000/api/customer/newCustomer';
   getCustomersUrl='http://localhost:9000/api/customer/getAllCustomers';
+  getCustomerUrl='http://localhost:9000/api/customer/getCustomer';
+
 
   constructor(private http:HttpClient) { }
 
@@ -81,6 +83,13 @@ getCustomers() : Observable<Customer[]> {
       tap(_ => console.log('fetched heroes')),
       catchError(this.handleError<Customer[]>('getHeroes', []))
     );
+}
+
+getCustomer(id: string) : Observable<Customer> {
+  return this.getCustomers().pipe(
+    map((customers:Customer[])=>customers.find(customer=>customer.id==id))
+  );
+   
 }
 
 private handleError<T> (operation = 'operation', result?: T) {

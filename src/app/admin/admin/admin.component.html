@@ -5,12 +5,11 @@
 
 <clr-vertical-nav [clr-nav-level]="2" *ngIf="true">
     <clr-vertical-nav-group routerLinkActive="active">
-        <a routerLink="./Bag" hidden aria-hidden="true">
-        </a>
+      
         <clr-icon shape="tags" clrVerticalNavIcon></clr-icon>
         Customer
         <clr-vertical-nav-group-children *clrIfExpanded>
-            <a clrVerticalNavLink routerLink="./searchcustomer" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="./customers" routerLinkActive="active">
                 Search
             </a>
             <a clrVerticalNavLink routerLink="./addcustomer" routerLinkActive="active">

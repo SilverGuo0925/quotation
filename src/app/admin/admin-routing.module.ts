@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {AdminComponent} from './admin/admin.component';
 import { AddcustomerComponent } from './addcustomer/addcustomer.component';
-import { SearchcustomerComponent } from './searchcustomer/searchcustomer.component';
-
+import { CustomersComponent } from './customers/customers.component';
+import {CustomerDetailComponent}from './customer-detail/customer-detail.component'
 const adminRoutes: Routes = [
   {
     path: '',
@@ -15,10 +15,14 @@ const adminRoutes: Routes = [
        
       },
       {
-        path: 'searchcustomer',
-        component: SearchcustomerComponent
+        path: 'customers',
+        component: CustomersComponent
       },
-      { path: '', redirectTo: '/admin/searchcustomer', pathMatch: 'full' }
+      {
+        path: 'customer/:id',
+        component: CustomerDetailComponent
+      },
+      { path: '', redirectTo: '/admin/customers', pathMatch: 'full' }
 
     ]
   }

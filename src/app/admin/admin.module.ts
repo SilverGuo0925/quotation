@@ -6,12 +6,13 @@ import { ClrDatepickerModule ,ClarityModule } from '@clr/angular';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from '../app.material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SearchcustomerComponent } from './searchcustomer/searchcustomer.component';
+import { CustomersComponent } from './customers/customers.component';
 import { AddcustomerComponent } from './addcustomer/addcustomer.component';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 
 
 @NgModule({
-  declarations: [AdminComponent,AddcustomerComponent,SearchcustomerComponent],
+  declarations: [AdminComponent,AddcustomerComponent,CustomersComponent, CustomerDetailComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

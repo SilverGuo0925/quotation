@@ -34,7 +34,7 @@
   <clr-dg-row *ngFor="let customer of customers">
 
     
-      <clr-dg-cell><a href="#/login">{{customer.id}}</a></clr-dg-cell>
+      <clr-dg-cell><a [routerLink]="['../customer', customer.id]">{{customer.id}}</a></clr-dg-cell>
       <clr-dg-cell>{{customer.companyName}}</clr-dg-cell>
       <clr-dg-cell>{{customer.contactPerson}}</clr-dg-cell>
       <clr-dg-cell>{{customer.phone}}</clr-dg-cell>

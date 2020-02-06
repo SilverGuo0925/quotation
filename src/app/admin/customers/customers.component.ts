@@ -4,11 +4,11 @@ import { SysMgrService } from 'app/services/sys-mgr.service';
 import { Customer } from 'app/models/customer';
 
 @Component({
-  selector: 'app-searchcustomer',
-  templateUrl: './searchcustomer.component.html',
-  styleUrls: ['./searchcustomer.component.scss']
+  selector: 'app-customers',
+  templateUrl: './customers.component.html',
+  styleUrls: ['./customers.component.scss']
 })
-export class SearchcustomerComponent implements OnInit {
+export class CustomersComponent implements OnInit {
 
   isDgHidden:boolean;
   cnt:number;
