@@ -1,6 +1,12 @@
-<h2>HEROES</h2>
+<div>
+  <a routerLink="/admin/customers">
+    <mat-icon>navigate_before</mat-icon>
+  </a> <span class="aligned-with-icon">Customer</span>
+</div>
+
 <div *ngIf="customer$ | async as customer">
-  <h3>"{{ customer.id }}"</h3>
+
+  <!-- <h3>"{{ customer.id }}"</h3>
   <div>
     <label>Id: </label>{{ customer.id }}</div>
   <div>
@@ -8,5 +14,113 @@
     <input [(ngModel)]="customer.address" placeholder="address"/>
 
   </div>
-    <button (click)="gotoCustomers(customer)">Back</button>
+    <button (click)="gotoCustomers(customer)">Back</button> -->
+  <clr-tabs>
+    <clr-tab>
+      <button clrTabLink id="link1">Profile</button>
+      <clr-tab-content id="content1" *clrIfActive="true">
+        <div class="clr-row">
+          <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+
+
+
+            <form >
+              <section class="form-block">
+                <label>Company</label>
+                <div class="form-group">
+                  <label for="customerId">Customer ID</label>
+                  <span id="customerId"> {{customer.id}}</span>
+                </div>
+                <div class="form-group">
+                  <label for="companyName">Company Name</label>
+                  <span id="companyName"> {{customer.companyName}}</span>
+                </div>
+                <div class="form-group">
+                  <label for="contactPerson">Contact Person</label>
+                  <span id="contactPerson"> {{customer.contactPerson}}</span>
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <span id="phone"> {{customer.phone}}</span>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <span id="email"> {{customer.email}}</span>
+                </div>
+              </section>
+              <section class="form-block">
+                <label>Address</label>
+
+                <div class="form-group">
+                  <label for="buildingFloorUnit">Building, Floor and Unit</label>
+                  <span id="buildingFloorUnit"> {{customer.buildingFloorUnit}}</span>
+                </div>
+                <div class="form-group">
+                  <label for="address">Address</label>
+                  <span id="address"> {{customer.address}}</span>
+                </div>
+                
+                <div class="form-group">
+                  <label for="postcode">Postcode</label>
+                  <span id="postcode"> {{customer.postcode}}</span>
+                </div>
+
+                <!-- <button type="submit" class="btn btn-primary">Button</button> -->
+              </section>
+            </form>
+
+          </div>
+
+        </div>
+
+
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink id="link2">Invioce</button>
+      <clr-tab-content id="content1" *clrIfActive="true">
+        <div class="clr-row">
+          <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+
+            <form>
+              <section class="form-block">
+                  <label>A Form</label>
+                  <div class="form-group">
+                      <label for="aForm_1">This is a form field</label>
+                      <input type="password" id="aForm_1" placeholder="Enter one value here" size="35">
+                  </div>
+                  <div class="form-group">
+                      <label for="aForm_2">Another form field</label>
+                      <input type="password" id="aForm_2" placeholder="Enter another value here" size="35">
+                  </div>
+                  <div class="form-group">
+                      <label for="aForm_3">A select box</label>
+                      <div class="select">
+                          <select id="aForm_3">
+                              <option>Option 1</option>
+                              <option>Option 2</option>
+                              <option>Option 3</option>
+                              <option>Option 4</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="aForm_4">Textarea</label>
+                      <textarea id="aForm_4" rows="5"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Button</button>
+              </section>
+          </form>
+
+          
+          </div>
+
+        </div>
+
+
+      </clr-tab-content>
+    </clr-tab>
+  </clr-tabs>
+
+
 </div>

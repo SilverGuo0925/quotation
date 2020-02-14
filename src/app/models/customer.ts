@@ -9,9 +9,9 @@ export class Customer {
     id:string;
     address: string;
     postcode : number;
-    buidingFloorUnit : string;
+    buildingFloorUnit : string;
     
-    constructor(p_contactPerson: string,p_companyName: string,p_phone : number,p_email:string,p_customerId:string,p_address: string,p_postcode:number,p_buidingFloorUnit:string){
+    constructor(p_contactPerson: string,p_companyName: string,p_phone : number,p_email:string,p_customerId:string,p_address: string,p_postcode:number,p_buildingFloorUnit:string){
 
         this.contactPerson=p_contactPerson;
         this.companyName=p_companyName;
@@ -20,7 +20,7 @@ export class Customer {
         this.id=p_customerId;
         this.address=p_address;
         this.postcode=p_postcode;
-        this.buidingFloorUnit=p_buidingFloorUnit;
+        this.buildingFloorUnit=p_buildingFloorUnit;
     }
 
   }

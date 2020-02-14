@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { SysMgrService } from 'app/services/sys-mgr.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-customer-detail',
@@ -14,12 +15,18 @@ export class CustomerDetailComponent implements OnInit {
 
   cnt:number;
   customer$:Observable<Customer>;
-
+  options: FormGroup;
   constructor(
     private route: ActivatedRoute,
     private sysMgr: SysMgrService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private fb: FormBuilder
+  ) { 
+    this.options = fb.group({
+      customerId: ['']
+      
+    });
+  }
 
   ngOnInit() {
       // this.customer$=this.route.paramMap.pipe(
