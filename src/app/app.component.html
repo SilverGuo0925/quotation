@@ -73,6 +73,12 @@
               <a *ngIf="currentUser" (click)="logout()" clrDropdownItem>Log out</a>
           </clr-dropdown-menu>
       </clr-dropdown>
+      <clr-dropdown *ngIf="currentUser">
+        <button class="nav-icon" clrDropdownTrigger>
+          <clr-icon shape="shopping-cart"></clr-icon>
+        </button>
+       
+    </clr-dropdown>
   </div>
   </clr-header>
 

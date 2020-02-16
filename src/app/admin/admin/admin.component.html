@@ -6,17 +6,65 @@
 <clr-vertical-nav [clr-nav-level]="2" *ngIf="true">
     <clr-vertical-nav-group routerLinkActive="active">
       
-        <clr-icon shape="tags" clrVerticalNavIcon></clr-icon>
+        <clr-icon shape="building" clrVerticalNavIcon></clr-icon>
         Customer
         <clr-vertical-nav-group-children *clrIfExpanded>
             <a clrVerticalNavLink routerLink="./customers" routerLinkActive="active">
+                <clr-icon shape="search" clrVerticalNavIcon></clr-icon>
                 Search
             </a>
             <a clrVerticalNavLink routerLink="./addcustomer" routerLinkActive="active">
+                <clr-icon shape="plus" clrVerticalNavIcon></clr-icon>
                 Add 
             </a>
         </clr-vertical-nav-group-children>
     </clr-vertical-nav-group>
   
-    
+    <clr-vertical-nav-group routerLinkActive="active">
+      
+        <clr-icon shape="dollar-bill" clrVerticalNavIcon></clr-icon>
+        Invoice
+        <clr-vertical-nav-group-children *clrIfExpanded>
+            <a clrVerticalNavLink routerLink="./customers" routerLinkActive="active">
+                <clr-icon shape="search" clrVerticalNavIcon></clr-icon>
+                Search
+            </a>
+            <a clrVerticalNavLink routerLink="./addcustomer" routerLinkActive="active">
+                <clr-icon shape="plus" clrVerticalNavIcon></clr-icon>
+                Add 
+            </a>
+        </clr-vertical-nav-group-children>
+    </clr-vertical-nav-group>
+  
+    <clr-vertical-nav-group routerLinkActive="active">
+      
+        <clr-icon shape="file-group" clrVerticalNavIcon></clr-icon>
+        Quotation
+        <clr-vertical-nav-group-children *clrIfExpanded>
+            <a clrVerticalNavLink routerLink="./customers" routerLinkActive="active">
+                <clr-icon shape="search" clrVerticalNavIcon></clr-icon>
+                Search
+            </a>
+            <a clrVerticalNavLink routerLink="./addcustomer" routerLinkActive="active">
+                <clr-icon shape="plus" clrVerticalNavIcon></clr-icon>
+                Add 
+            </a>
+        </clr-vertical-nav-group-children>
+    </clr-vertical-nav-group>
+
+    <clr-vertical-nav-group routerLinkActive="active">
+      
+        <clr-icon shape="note" clrVerticalNavIcon></clr-icon>
+        Delivery Note
+        <clr-vertical-nav-group-children *clrIfExpanded>
+            <a clrVerticalNavLink routerLink="./customers" routerLinkActive="active">
+                <clr-icon shape="search" clrVerticalNavIcon></clr-icon>
+                Search
+            </a>
+            <a clrVerticalNavLink routerLink="./addcustomer" routerLinkActive="active">
+                <clr-icon shape="plus" clrVerticalNavIcon></clr-icon>
+                Add 
+            </a>
+        </clr-vertical-nav-group-children>
+    </clr-vertical-nav-group>
 </clr-vertical-nav>
