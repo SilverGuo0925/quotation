@@ -52,7 +52,7 @@
                 <label>Address</label>
 
                 <div class="form-group">
-                  <label for="buildingFloorUnit">Building, Floor and Unit</label>
+                  <label for="buildingFloorUnit">Building, Floor, Unit, etc.</label>
                   <span id="buildingFloorUnit"> {{customer.buildingFloorUnit}}</span>
                 </div>
                 <div class="form-group">
@@ -77,40 +77,53 @@
       </clr-tab-content>
     </clr-tab>
     <clr-tab>
-      <button clrTabLink id="link2">Invioce</button>
+      <button clrTabLink id="link2">Quotation</button>
+      <clr-tab-content id="content1">
+        <div class="clr-row">
+          <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+    
+            <button class="btn btn-primary" (click)="exportExcelFile(customer,docQ)">Download</button>
+    
+          </div>
+    
+        </div>
+    
+    
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink id="link2">Invoice</button>
       <clr-tab-content id="content1" >
         <div class="clr-row">
           <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
 
-            <form>
-              <section class="form-block">
-                  <label>A Form</label>
-                  <div class="form-group">
-                      <label for="aForm_1">This is a form field</label>
-                      <input type="password" id="aForm_1" placeholder="Enter one value here" size="35">
-                  </div>
-                  <div class="form-group">
-                      <label for="aForm_2">Another form field</label>
-                      <input type="password" id="aForm_2" placeholder="Enter another value here" size="35">
-                  </div>
-                  <div class="form-group">
-                      <label for="aForm_3">A select box</label>
-                      <div class="select">
-                          <select id="aForm_3">
-                              <option>Option 1</option>
-                              <option>Option 2</option>
-                              <option>Option 3</option>
-                              <option>Option 4</option>
-                          </select>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="aForm_4">Textarea</label>
-                      <textarea id="aForm_4" rows="5"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Button</button>
-              </section>
-          </form>
+            <button class="btn btn-primary" (click)="exportExcelFile(customer,docI)">Download</button>
+
+            <!-- <clr-icon shape="download" (click)="exportExcelFile(customer)" ></clr-icon> -->
+
+
+
+
+          
+          </div>
+
+        </div>
+
+
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink id="link2">Delivery Note</button>
+      <clr-tab-content id="content1" >
+        <div class="clr-row">
+          <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+
+            <button class="btn btn-primary" (click)="exportExcelFile(customer,docD)">Download</button>
+
+            <!-- <clr-icon shape="download" (click)="exportExcelFile(customer)" ></clr-icon> -->
+
+
+
 
           
           </div>

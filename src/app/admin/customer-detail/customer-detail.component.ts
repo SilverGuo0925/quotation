@@ -3,8 +3,11 @@ import { Customer } from 'app/models/customer';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { SysMgrService } from 'app/services/sys-mgr.service';
+import {DocumentType, SysMgrService } from 'app/services/sys-mgr.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {saveAs } from "file-saver";
+
+
 
 @Component({
   selector: 'app-customer-detail',
@@ -16,6 +19,13 @@ export class CustomerDetailComponent implements OnInit {
   cnt:number;
   customer$:Observable<Customer>;
   options: FormGroup;
+  fileName: string;
+  error: any;
+
+  docQ=DocumentType.Quotation;
+  docI= DocumentType.Invoice;
+  docD= DocumentType.DeliveryNote;
+
   constructor(
     private route: ActivatedRoute,
     private sysMgr: SysMgrService,
@@ -26,6 +36,7 @@ export class CustomerDetailComponent implements OnInit {
       customerId: ['']
       
     });
+
   }
 
   ngOnInit() {
@@ -45,4 +56,13 @@ export class CustomerDetailComponent implements OnInit {
     this.router.navigate(['/admin/customers']);
   }
 
+  exportExcelFile(customer: Customer, docType: DocumentType) {
+    this.fileName='sample.xlsx';
+    this.sysMgr.downloadFilewithParams(customer.id,docType)
+      .subscribe(
+        (blob) => saveAs(blob,this.fileName), // success path
+        error => this.error = error // error path
+      );
+  }
+ 
 }

@@ -1,10 +1,17 @@
 import { Injectable } from '@angular/core';
-import {HttpHeaders,HttpClient} from '@angular/common/http';
+import {HttpHeaders,HttpClient, HttpParams} from '@angular/common/http';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 import { Observable, throwError, of } from 'rxjs';
 import { tap,map,catchError, retry } from 'rxjs/operators';
 import {Customer} from '../models/customer';
+
+
+export enum DocumentType{
+  Quotation,
+  Invoice,
+  DeliveryNote
+}
 
 export interface Config {
   id: number;
@@ -69,7 +76,16 @@ downloadFile(){
         return res;
       }));
 }
+downloadFilewithParams(customerId:string,docType:DocumentType){
+  let params = new HttpParams().set('customerId', customerId)
+  .set('docType', docType.toString());
 
+  return this.http.get(this.fileUrl, {responseType: 'blob',params:params })
+      .pipe(map((res: any) => {
+        console.log('res', res);
+        return res;
+      }));
+}
 saveNewCustomer(customer: Customer)  {
   return this.http.post<any>(this.customerUrl,customer,this.httpOptions )
 .pipe(map(res => {

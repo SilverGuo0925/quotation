@@ -19,7 +19,7 @@
         <mat-error *ngIf="loginForm.get('username').invalid">Invaild email</mat-error>
       </mat-form-field>
       <mat-form-field >
-        <input matInput placeholder="Password" formControlName="password">
+        <input matInput type="password" placeholder="Password" formControlName="password">
         <mat-error *ngIf="loginForm.get('password').invalid">Minimum length 8</mat-error>
       </mat-form-field>
     
