@@ -13,15 +13,17 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'quotation',
-    loadChildren: () => import('./quotation/quotation.module').then(mod => mod.QuotationModule)//,
+   // loadChildren: () => import('./quotation/quotation.module').then(mod => mod.QuotationModule)//,
    // data: { preload: true }
-   //loadChildren: './quotation/quotation.module#QuotationModule'
+    loadChildren: './quotation/quotation.module#QuotationModule'
   },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),canActivate: [AuthGuard]
+   // loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),canActivate: [AuthGuard]
+   loadChildren: './admin/admin.module#AdminModule'
+
   },
-  { path: 'documentation', component: DocumentationComponent, canActivate: [AuthGuard] },
+  { path: 'documentation', component: DocumentationComponent },
   { path: 'track', component: TrackComponent },
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },

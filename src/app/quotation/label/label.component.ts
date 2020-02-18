@@ -21,25 +21,25 @@ export class LabelComponent implements OnInit {
    
   }
 
-  showConfig() {
-    this.sysMgr.getConfig()
-      .subscribe(
-        (data: Config) => this.config = { ...data }, // success path
-        error => this.error = error // error path
-      );
-  }
-  clear() {
-    this.config = undefined;
-    this.error = undefined;
-  }
+  // showConfig() {
+  //   this.sysMgr.getConfig()
+  //     .subscribe(
+  //       (data: Config) => this.config = { ...data }, // success path
+  //       error => this.error = error // error path
+  //     );
+  // }
+  // clear() {
+  //   this.config = undefined;
+  //   this.error = undefined;
+  // }
 
-  exportExcelFile() {
-    this.fileName='sample.xlsx';
-    this.sysMgr.downloadFile()
-      .subscribe(
-        (blob) => saveAs(blob,this.fileName), // success path
-        error => this.error = error // error path
-      );
-  }
+  // exportExcelFile() {
+  //   this.fileName='sample.xlsx';
+  //   this.sysMgr.downloadFile()
+  //     .subscribe(
+  //       (blob) => saveAs(blob,this.fileName), // success path
+  //       error => this.error = error // error path
+  //     );
+  // }
  
 }

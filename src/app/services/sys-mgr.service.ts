@@ -5,6 +5,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
 import { tap,map,catchError, retry } from 'rxjs/operators';
 import {Customer} from '../models/customer';
+import { environment } from 'environments/environment';
 
 
 export enum DocumentType{
@@ -31,22 +32,24 @@ export class SysMgrService {
   };
   sidenav:any;
   // configUrl = 'https://jsonplaceholder.typicode.com/posts/42';
-  configUrl='http://localhost:8080/greeting';
-  fileUrl='http://localhost:9000/api/exportFile';
+//  configUrl='http://localhost:8080/greeting';
+ // fileUrl= 'http://localhost:9000/api/exportFile';
   customerUrl='http://localhost:9000/api/customer/newCustomer';
-  getCustomersUrl='http://localhost:9000/api/customer/getAllCustomers';
-  getCustomerUrl='http://localhost:9000/api/customer/getCustomer';
+ // getCustomersUrl='http://localhost:9000/api/customer/getAllCustomers';
+//  getCustomerUrl='http://localhost:9000/api/customer/getCustomer';
+  
+  serverUrl = environment.baseUrl;
 
 
   constructor(private http:HttpClient) { }
 
- getConfig() {
-  return this.http.get<Config>(this.configUrl)
-    .pipe(
-      retry(3), // retry a failed request up to 3 times
-      catchError(this.handleError) // then handle the error
-    );
-}
+//  getConfig() {
+//   return this.http.get<Config>(this.configUrl)
+//     .pipe(
+//       retry(3), // retry a failed request up to 3 times
+//       catchError(this.handleError) // then handle the error
+//     );
+// }
 
 // private handleError(error: HttpErrorResponse) {
 //   if (error.error instanceof ErrorEvent) {
@@ -69,32 +72,32 @@ public toggleNav() {
 }
 
 
-downloadFile(){
-  return this.http.get(this.fileUrl, {responseType: 'blob'})
-      .pipe(map((res: any) => {
-        console.log('res', res);
-        return res;
-      }));
-}
+// downloadFile(){
+//   return this.http.get(this.fileUrl, {responseType: 'blob'})
+//       .pipe(map((res: any) => {
+//         console.log('res', res);
+//         return res;
+//       }));
+// }
 downloadFilewithParams(customerId:string,docType:DocumentType){
   let params = new HttpParams().set('customerId', customerId)
   .set('docType', docType.toString());
 
-  return this.http.get(this.fileUrl, {responseType: 'blob',params:params })
+  return this.http.get(this.serverUrl+"/exportFile", {responseType: 'blob',params:params })
       .pipe(map((res: any) => {
         console.log('res', res);
         return res;
       }));
 }
 saveNewCustomer(customer: Customer)  {
-  return this.http.post<any>(this.customerUrl,customer,this.httpOptions )
+  return this.http.post<any>(this.serverUrl+"/customer/newCustomer",customer,this.httpOptions )
 .pipe(map(res => {
   return res;
 }));
 }
 
 getCustomers() : Observable<Customer[]> {
-  return this.http.get<Customer[]>(this.getCustomersUrl)
+  return this.http.get<Customer[]>(this.serverUrl+"/customer/getAllCustomers")
     .pipe(
       tap(_ => console.log('fetched heroes')),
       catchError(this.handleError<Customer[]>('getHeroes', []))

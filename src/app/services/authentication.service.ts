@@ -8,6 +8,8 @@ import { User } from '../models/user';
 import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +22,14 @@ export class AuthenticationService {
   };
   user:User;
   token:string;
-  url='http://localhost:9000/api/login';
-  url_profile='http://localhost:9000/api/user/profile';
+
+  serverUrl = environment.baseUrl;
+  //url='http://localhost:9000/api/login';
+
+ // url='http://localhost:9000/api/login';
+ // url='http://qingprint.sg:8080/qp-public-webservice-0.0.1-SNAPSHOT/api/login';
+
+ // url_profile='http://localhost:9000/api/user/profile';
 
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
@@ -37,7 +45,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string)  {
-        return this.http.post<any>(this.url,{username,password},this.httpOptions )
+        return this.http.post<any>(this.serverUrl+"/login",{username,password},this.httpOptions )
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
@@ -61,7 +69,7 @@ export class AuthenticationService {
 }
 
 getProfile(token: string)  {
-  return this.http.post<any>(this.url_profile,{token},this.httpOptions )
+  return this.http.post<any>(this.serverUrl+"/user/profile",{token},this.httpOptions )
 .pipe(map(user => {
   // login successful if there's a jwt token in the response
   if (user && user.username) {
