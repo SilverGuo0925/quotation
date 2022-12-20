@@ -23,7 +23,7 @@ export class AuthenticationService {
   user:User;
   token:string;
 
-  serverUrl = environment.baseUrl;
+  baseUrl = environment.baseUrl;
   //url='http://localhost:9000/api/login';
 
  // url='http://localhost:9000/api/login';
@@ -35,52 +35,58 @@ export class AuthenticationService {
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<User>(this.decodeToken(sessionStorage.getItem('jwt-token')));
     this.currentUser = this.currentUserSubject.asObservable();
-   this.user =new User();
   }
 
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string)  {
-        return this.http.post<any>(this.serverUrl+"/login",{username,password},this.httpOptions )
-      .pipe(map(user => {
+  login(loginId: string, password: string)  {
+        return this.http.post<any>(this.baseUrl+'/users/authenticate', {loginId,password},this.httpOptions )
+      .pipe(map(auth => {
         // login successful if there's a jwt token in the response
-        if (user && user.token) {
+        if (auth.user && auth.auth) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          this.user.token=user.token;
-          this.user.username=username;
-          this.user.password=password;
-          localStorage.setItem('currentUser', JSON.stringify(this.user));
-          this.currentUserSubject.next(this.user);
-        }
-
-        return this.user;
-      }));
-
-  }
+          auth.user.token = sessionStorage.getItem('jwt-token');
+          this.currentUserSubject.next(auth.user);
+      }
+      return auth;
+  }));
+}
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('jwt-token');    
     this.currentUserSubject.next(null);
 }
 
-getProfile(token: string)  {
-  return this.http.post<any>(this.serverUrl+"/user/profile",{token},this.httpOptions )
-.pipe(map(user => {
-  // login successful if there's a jwt token in the response
-  if (user && user.username) {
-    // store user details and jwt token in local storage to keep user logged in between page refreshes
-    this.user.username=user.username;
-   
+getProfile(): Observable<any> {  
+  return this.http.get(this.baseUrl+"/users/profile")
+
+};
+
+
+
+decodeToken(token: string) {
+  if (!token) {
+    return;
   }
-
-  return this.user;
-}));
-
+  const _decodeToken = (token: string) => {
+    try {
+      return JSON.parse(atob(token));
+    } catch {
+      return;
+    }
+  };
+  return token
+    .split('.')
+    .map(token => _decodeToken(token))
+    .reduce((acc, curr) => {
+      if (!!curr) acc = { ...acc, ...curr };
+      return acc;
+    }, Object.create(null));
 }
 
 }

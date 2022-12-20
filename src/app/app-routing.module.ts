@@ -6,7 +6,6 @@ import {DocumentationComponent} from './documentation/documentation.component';
 import {TrackComponent} from './track/track.component';
 import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
-import {AuthGuard} from './helpers';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

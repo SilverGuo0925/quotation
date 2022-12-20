@@ -16,8 +16,7 @@ export class ProfileComponent implements OnInit {
   constructor(private authenticationService:AuthenticationService) { }
 
   ngOnInit() {
-    this.authenticationService.getProfile(this.authenticationService.currentUserValue.token)
-  .pipe(first())
+    this.authenticationService.getProfile()
   .subscribe(
       (data:User) => {
           this.user=data;

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppMaterialModule } from './app.material.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,8 @@ import { DocumentationComponent } from './documentation/documentation.component'
 import { TrackComponent } from './track/track.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -34,6 +36,9 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   declarations: [AppComponent, TopNavComponent, LoginComponent, PageNotFoundComponent, DocumentationComponent, TrackComponent, HomeComponent, ProfileComponent],
   //entryComponents: [DialogContentComponent],
-  bootstrap: [AppComponent],
+  providers:[
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

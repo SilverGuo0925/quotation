@@ -64,14 +64,17 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.loginForm.value.username,this.loginForm.value.password)
     .pipe(first())
     .subscribe(
-        (data:User) => {
-            this.user=data;
+        data => {
+          if (data.auth){
             this.router.navigate(['/']);
+          } else {
+            this.error = data.reason;
+        }
         },
         error => {
           //  this.alertService.error(error);
             this.loading = false;
-            this.error = error // error path
+          //  this.error = error // error path
         });
 
   }
