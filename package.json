@@ -8,7 +8,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-dev": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build --configuration=dev && npm run zip-dist",
+    "build-production": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build --configuration=production && npm run zip-dist",
+    "zip-dist": "cd dist && jar cvf ../public.war . "
   },
   "private": true,
   "dependencies": {
