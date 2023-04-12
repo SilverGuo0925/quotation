@@ -58,8 +58,6 @@ pipeline {
             }
         }
 		
-		 /* 
-		
 		 stage('Deploy to Cloud Server') {
             steps {
                 script {
