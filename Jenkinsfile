@@ -6,7 +6,7 @@ pipeline {
 		IMAGE_NAME = "qp-scs-public-frontend-${ENV}"
 		CLOUD_SERVER_IP = 'sup.qingprint.sg'
 		SSH_USER = 'root'
-		WORKSPACE ='C:\Users\silver.guo\jenkins\jenkins_home\workspace\qp_public_frontend'
+		WORKSPACE ='C:/Users/silver.guo/jenkins/jenkins_home/workspace/qp_public_frontend'
     }
 
     stages {
