@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-    docker {
-      image 'node:16' // Replace '14' with the desired Node.js version
-      args '-u root' // Run the container as root to avoid permission issues
-    }
+    agent any
   }
 
     environment {
@@ -14,20 +10,19 @@ pipeline {
     }
 
     stages {
-        
+	
         stage('Build') {
             steps {
-                sh 'npm ci'
-				sh 'npm install'
                 script {
                     if (env.ENV == 'prod') {
-                        sh "npm run build-production"
+                        sh 'sudo docker run --rm -v $(pwd):/app -w /app node:16 /bin/sh -c "npm ci && npm run build-production"'
                     } else {
-                        sh "npm run build-${env.ENV}"
+                        sh 'sudo docker run --rm -v $(pwd):/app -w /app node:16 /bin/sh -c "npm ci && npm run build-${env.ENV}"'
                     }
                 }
             }
         }
+
 		
 		stage('Replace nginx.conf') {
             steps {
