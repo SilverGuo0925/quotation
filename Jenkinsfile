@@ -6,7 +6,7 @@ pipeline {
 		IMAGE_NAME = "qp-scs-public-frontend-${ENV}"
 		CLOUD_SERVER_IP = 'sup.qingprint.sg'
 		SSH_USER = 'root'
-		WORKSPACE ='C:/Users/silver.guo/jenkins/jenkins_home/workspace/qp_public_frontend'
+		// WORKSPACE ='C:/Users/silver.guo/jenkins/jenkins_home/workspace/qp_public_frontend'
     }
 
     stages {
@@ -15,9 +15,9 @@ pipeline {
             steps {
                 script {
                     if (env.ENV == 'prod') {
-                        sh 'sudo docker run --rm -v ${env.WORKSPACE}:/app -w /app node:16 /bin/sh -c "npm ci && npm run build-production"'
+                        sh 'sudo docker run --rm -v C:/Users/silver.guo/jenkins/jenkins_home/workspace/qp_public_frontend:/app -w /app node:16 /bin/sh -c "npm ci && npm run build-production"'
                     } else {
-                        sh 'sudo docker run --rm -v ${env.WORKSPACE}:/app -w /app node:16 /bin/sh -c "npm ci && npm run build-${env.ENV}"'
+                        sh 'sudo docker run --rm -v C:/Users/silver.guo/jenkins/jenkins_home/workspace/qp_public_frontend:/app -w /app node:16 /bin/sh -c "npm ci && npm run build-${env.ENV}"'
                     }
                 }
             }
