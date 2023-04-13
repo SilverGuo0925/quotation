@@ -15,9 +15,9 @@ pipeline {
             steps {
                 script {
                     if (env.ENV == 'prod') {
-                        sh 'npm ci && npm run build-production'
+                        sh 'npm ci --force && npm run build-production'
                     } else {
-                        sh "npm ci && npm run build-${env.ENV}"
+                        sh "npm ci --force && npm run build-${env.ENV}"
                     }
                 }
             }
