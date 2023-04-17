@@ -32,7 +32,7 @@ pipeline {
                 }
             }
         }
-		*/
+		
 		stage('Build Docker Image') {
             steps {
 			    sh "sudo docker rm -f ${env.IMAGE_NAME}"
@@ -52,7 +52,7 @@ pipeline {
                 }
             }
         }
-		
+		*/
 		 stage('Deploy to Cloud Server') {
             steps {
                 script {
