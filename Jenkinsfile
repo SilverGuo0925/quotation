@@ -11,7 +11,7 @@ pipeline {
 
     stages {
 	
-       stage('Build') {
+       /* stage('Build') {
             steps {
                 script {
                     if (env.ENV == 'prod') {
@@ -32,7 +32,7 @@ pipeline {
                 }
             }
         }
-		
+		*/
 		stage('Build Docker Image') {
             steps {
 			    sh "sudo docker rm -f ${env.IMAGE_NAME}"
