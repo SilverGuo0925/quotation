@@ -11,7 +11,7 @@ pipeline {
 
     stages {
 	
-       /* stage('Build') {
+        stage('Build') {
             steps {
                 script {
                     if (env.ENV == 'prod') {
@@ -52,8 +52,8 @@ pipeline {
                 }
             }
         }
-		*/
-		 stage('Deploy to Cloud Server') {
+		
+		stage('Deploy to Cloud Server') {
             steps {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'cloud-server-ssh-key', keyFileVariable: 'SSH_KEY')]) {
