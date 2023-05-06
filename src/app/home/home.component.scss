@@ -1,0 +1,33 @@
+.chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    z-index: 1000;
+  }
+  
+  .messages-container {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+  }
+  
+  .input-container {
+    padding: 10px;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  button {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+  }

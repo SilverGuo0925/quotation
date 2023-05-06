@@ -3,3 +3,15 @@
   we provide custom paper bag, plastic bag. paper cup, and plastic cup and so on.
  <br> currently the instant quote of paper bag, plastic bag and sticker are ready for usage.
 </p>
+<div class="chat-container">
+  <div class="messages-container">
+    <ul>
+      <li *ngFor="let message of messages">{{ message }}</li>
+    </ul>
+  </div>
+  <div class="input-container">
+    <textarea [(ngModel)]="newMessage" rows="3" cols="40" placeholder="Type your message here..."></textarea>
+    <br>
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>

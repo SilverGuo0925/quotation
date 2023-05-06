@@ -30,13 +30,15 @@
     "@clr/angular": "^1.1.5",
     "@clr/icons": "1.1.5",
     "@clr/ui": "1.1.5",
+    "@stomp/ng2-stompjs": "^8.0.0",
     "@types/file-saver": "^2.0.1",
     "@webcomponents/custom-elements": "^1.0.0",
     "core-js": "^2.5.7",
     "file-saver": "^2.0.2",
     "hammerjs": "^2.0.8",
-    "rxjs": "^6.3.3",
+    "rxjs": "^6.6.7",
     "sass": "^1.56.1",
+    "sockjs-client": "^1.6.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

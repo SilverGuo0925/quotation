@@ -20,6 +20,8 @@ import { TrackComponent } from './track/track.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
+import { RxStompConfig } from './rx-stomp.config';
 
 @NgModule({
   imports: [
@@ -37,7 +39,9 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
   declarations: [AppComponent, TopNavComponent, LoginComponent, PageNotFoundComponent, DocumentationComponent, TrackComponent, HomeComponent, ProfileComponent],
   //entryComponents: [DialogContentComponent],
   providers:[
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: InjectableRxStompConfig, useValue: RxStompConfig },
+    { provide: RxStompService, useFactory: rxStompServiceFactory, deps: [InjectableRxStompConfig] },
   ],
   bootstrap: [AppComponent]
 })

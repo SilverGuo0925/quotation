@@ -1,3 +1,47 @@
-<p>
-  track works!
-</p>
+<!-- <div class="chat-container">
+  <div class="chat-sidebar">
+    <h3>Clients</h3>
+    <ul>
+      <li *ngFor="let client of clients" (click)="selectClient(client)">
+        Client {{client.clientId}}: {{client.latestMessage.message}}
+      </li>
+    </ul>
+  </div>
+  <div class="chat-content" *ngIf="selectedClient">
+    <div class="chat-messages">
+      <div class="message" *ngFor="let message of selectedClientMessages">
+        <span class="sender">{{ message.sender }}</span>: {{ message.message }}
+      </div>
+    </div>
+    <div class="chat-input">
+      <textarea [(ngModel)]="newMessage" placeholder="Type your message"></textarea>
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div> -->
+
+<div class="chat-container">
+  <div class="chat-sidebar">
+    <h3>Clients</h3>
+    <table class="client-table">
+      <tbody>
+        <tr *ngFor="let client of clients" (click)="selectClient(client)">
+          <td>
+            Client {{client.clientId}}: {{client.latestMessage.message}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="chat-content" *ngIf="selectedClient">
+    <div class="chat-messages">
+      <div class="message" *ngFor="let message of selectedClientMessages">
+        <span class="sender">{{ message.sender }}</span>: {{ message.message }}
+      </div>
+    </div>
+    <div class="chat-input">
+      <textarea [(ngModel)]="newMessage" placeholder="Type your message"></textarea>
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>
