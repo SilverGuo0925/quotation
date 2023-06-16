@@ -23,8 +23,15 @@ export class HomeComponent implements OnInit, OnDestroy{
     if (this.newMessage) {
       this.rxStompService.publish({destination: `/client-messages/`, body: JSON.stringify({ clientId: this.clientId, message: this.newMessage })});
       this.messages.push(`You: ${this.newMessage}`);
+
+      // this.rxStompService.publish({
+      //   destination: `/test`,
+      //   body: this.newMessage
+      // });
+      // console.log(`Sent test message: You: ${this.newMessage}`);
       this.newMessage = '';
     }
+    
   }
   
   ngOnInit() {

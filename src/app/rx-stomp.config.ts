@@ -3,10 +3,10 @@ import { environment } from '../environments/environment'
 
 var url = '';
 
-if (environment.appEnv === 'PROD') {
-    url = 'wss://place2lease.hdb.gov.sg/webservice-public/live-bidding';
+if (environment.appEnv === 'PRD') {
+    url = 'ws://sup.qingprint.sg/webservice-public/live-chat';
 } else if (environment.appEnv === 'UAT') {
-    url = 'wss://place2lease.nicehomes.com.sg/webservice-public/live-bidding';
+    url = 'ws://sup.qingprint.sg/webservice-public/live-chat';
 } else {
     url = 'ws://localhost:9000/webservice-public/live-chat';
 }

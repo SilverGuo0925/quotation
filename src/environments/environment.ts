@@ -10,5 +10,5 @@ export const environment = {
  //baseUrl: 'http://localhost:8080/qp-public-webservice-0.0.1-SNAPSHOT/api'
  baseUrl: 'http://localhost:9000/api',
 
- wsUrl: 'ws://localhost:9000/webservice-public/live-chat'
+//  wsUrl: 'ws://localhost:9000/webservice-public/live-chat'
 };
