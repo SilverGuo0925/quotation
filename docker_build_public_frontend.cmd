@@ -18,7 +18,9 @@ echo.
 
 SET REPO_PROD=silverguo
 
-SET CUR_DIR=%CD%
+SET CUR_DIR=%~dp0
+
+echo current directory is %CUR_DIR%
 
 SET /p ENV="Enter environment [dev/prod]: "
 IF NOT DEFINED ENV (
